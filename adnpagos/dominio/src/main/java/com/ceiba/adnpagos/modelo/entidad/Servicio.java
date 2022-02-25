@@ -1,4 +1,4 @@
-package com.ceiba.usuario.modelo.entidad;
+package com.ceiba.adnpagos.modelo.entidad;
 
 import java.time.LocalDateTime;
 
