@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 
 @Getter
-public class ServicioPago {
+public class ServicioElectricoPago {
 	private Long id;
 	private String mesPago;
 	private LocalDateTime fechaMaximaPago;
