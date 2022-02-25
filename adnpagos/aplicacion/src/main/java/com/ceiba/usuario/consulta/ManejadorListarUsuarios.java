@@ -3,7 +3,8 @@ package com.ceiba.usuario.consulta;
 import java.util.List;
 
 import com.ceiba.adnpagos.modelo.dto.DtoUsuario;
-import com.ceiba.usuario.puerto.dao.DaoUsuario;
+import com.ceiba.adnpagos.puerto.dao.DaoUsuario;
+
 import org.springframework.stereotype.Component;
 
 @Component

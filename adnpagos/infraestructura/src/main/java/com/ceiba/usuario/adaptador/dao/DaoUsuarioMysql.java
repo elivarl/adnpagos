@@ -3,9 +3,9 @@ package com.ceiba.usuario.adaptador.dao;
 import java.util.List;
 
 import com.ceiba.adnpagos.modelo.dto.DtoUsuario;
+import com.ceiba.adnpagos.puerto.dao.DaoUsuario;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.puerto.dao.DaoUsuario;
 
 import org.springframework.stereotype.Component;
 
