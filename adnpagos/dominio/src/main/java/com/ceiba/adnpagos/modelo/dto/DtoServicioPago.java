@@ -11,6 +11,6 @@ public class DtoServicioPago {
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
 	private LocalDateTime fechaCreacion;
-	private DtoServicio servicio;
+	private DtoServicioElectrico servicio;
 
 }

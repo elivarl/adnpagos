@@ -11,6 +11,6 @@ public class ServicioPago {
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
 	private LocalDateTime fechaCreacion;
-	private Servicio servicio;
+	private ServicioElectrico servicio;
 
 }
