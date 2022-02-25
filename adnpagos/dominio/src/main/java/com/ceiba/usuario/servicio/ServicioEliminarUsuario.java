@@ -1,6 +1,6 @@
 package com.ceiba.usuario.servicio;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+import com.ceiba.adnpagos.puerto.repositorio.RepositorioUsuario;
 
 public class ServicioEliminarUsuario {
 

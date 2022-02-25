@@ -1,9 +1,10 @@
 package com.ceiba.usuario.adaptador.repositorio;
 
 import com.ceiba.adnpagos.modelo.entidad.Usuario;
+import com.ceiba.adnpagos.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.ceiba.usuario.puerto.repositorio;
+package com.ceiba.adnpagos.puerto.repositorio;
 
 import com.ceiba.adnpagos.modelo.entidad.Usuario;
 
