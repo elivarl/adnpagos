@@ -1,9 +1,9 @@
-package com.ceiba.usuario.comando.fabrica;
+package com.ceiba.adnpagos.comando.fabrica;
 
 import org.springframework.stereotype.Component;
 
+import com.ceiba.adnpagos.comando.ComandoUsuario;
 import com.ceiba.adnpagos.modelo.entidad.Usuario;
-import com.ceiba.usuario.comando.ComandoUsuario;
 
 @Component
 public class FabricaUsuario {

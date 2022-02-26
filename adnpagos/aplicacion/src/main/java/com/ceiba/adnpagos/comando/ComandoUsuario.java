@@ -1,4 +1,4 @@
-package com.ceiba.usuario.comando;
+package com.ceiba.adnpagos.comando;
 
 import java.time.LocalDateTime;
 
