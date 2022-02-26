@@ -25,6 +25,9 @@ repositories {
 }
 
 dependencies {
+
+	
+	
 	testImplementation project.ext.mockitocore
 	testImplementation project.ext.mockitoinline
 	testImplementation project.ext.mockitojupiter
@@ -37,6 +40,8 @@ dependencies {
 	implementation project.ext.springbootjdbc
 	runtimeOnly project.ext.db
 	testImplementation project.ext.flywaytest
+	
+	implementation project.ext.slf
 
 	
 	implementation project(':dominio')

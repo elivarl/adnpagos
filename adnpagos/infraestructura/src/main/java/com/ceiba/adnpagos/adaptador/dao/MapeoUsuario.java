@@ -1,4 +1,4 @@
-package com.ceiba.usuario.adaptador.dao;
+package com.ceiba.adnpagos.adaptador.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

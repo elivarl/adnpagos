@@ -13,19 +13,19 @@ import com.ceiba.usuario.servicio.ServicioCrearServicioElectrico;
 public class ManejadorCrearServicioElectrico
 		implements ManejadorComandoRespuesta<ComandoServicioElectrico, ComandoRespuesta<Long>> {
 	private final FabricaServicioElectrico fabricaServicioElectrico;
-	private final ServicioCrearServicioElectrico servicioCrearServicioElectrico;
+	private final ServicioCrearServicioElectrico crearServicioElectrico;
 
 	public ManejadorCrearServicioElectrico(FabricaServicioElectrico fabricaServicioElectrico,
 			ServicioCrearServicioElectrico crearServicioElectrico) {
 		this.fabricaServicioElectrico = fabricaServicioElectrico;
-		this.servicioCrearServicioElectrico = crearServicioElectrico;
+		this.crearServicioElectrico = crearServicioElectrico;
 
 	}
 
 	@Override
 	public ComandoRespuesta<Long> ejecutar(ComandoServicioElectrico comando) {
 		ServicioElectrico servicioElectrico = fabricaServicioElectrico.crear(comando);
-		return new ComandoRespuesta<Long>(servicioCrearServicioElectrico.ejecutar(servicioElectrico));
+		return new ComandoRespuesta<Long>(crearServicioElectrico.ejecutar(servicioElectrico));
 	}
 
 }

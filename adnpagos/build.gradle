@@ -40,6 +40,7 @@ allprojects {
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']
+	project.ext.slf=['org.slf4j:slf4j-log4j12:1.7.29']
 
 	// Se excluye JUnit 4
 	configurations {
