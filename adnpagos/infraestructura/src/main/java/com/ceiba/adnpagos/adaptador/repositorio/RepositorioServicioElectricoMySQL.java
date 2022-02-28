@@ -1,5 +1,6 @@
 package com.ceiba.adnpagos.adaptador.repositorio;
 
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
@@ -15,6 +16,13 @@ public class RepositorioServicioElectricoMySQL implements RepositorioServicioEle
 	@SqlStatement(namespace="electrico", value="crear")
 	private static String sqlCrear;
 	
+	
+	@SqlStatement(namespace="electrico", value="actualizar")
+	private static String sqlActualizar;
+	
+	@SqlStatement (namespace = "electrico", value="eliminar")
+	private static String sqlEliminar;
+	
 	public RepositorioServicioElectricoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate=customNamedParameterJdbcTemplate;
 	
@@ -27,14 +35,14 @@ public class RepositorioServicioElectricoMySQL implements RepositorioServicioEle
 
 	@Override
 	public void actualizar(ServicioElectrico servicio) {
-		// TODO Auto-generated method stub
-		
+		this.customNamedParameterJdbcTemplate.actualizar(servicio, sqlActualizar);
 	}
 
 	@Override
-	public void eliminar(ServicioElectrico servicio) {
-		// TODO Auto-generated method stub
-		
+	public void eliminar(Long id) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("id", id);
+		this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);	
 	}
 
 	@Override

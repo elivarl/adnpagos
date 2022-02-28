@@ -11,11 +11,15 @@ create table servicios (
  numero_servicio varchar(25) not null,
  identificacion_cliente varchar(15) not null,
  nombre_cliente varchar(100) not null,
+ mes_pago varchar(25) not null,
+ fecha_maxima_pago datetime null,
+ valor decimal (8,3) not null,
+ estado BOOLEAN,
  fecha_creacion datetime null,
  primary key (id)
 );
 
-create table servicios_pagos (
+/*create table servicios_pagos (
  id int(11) not null auto_increment,
  mes_pago varchar(25) not null,
  fecha_maxima_pago datetime null,
@@ -26,7 +30,7 @@ create table servicios_pagos (
  primary key (id),
  FOREIGN KEY(id_servicio)  REFERENCES  servicios(id) 
  ON DELETE CASCADE ON UPDATE CASCADE
-);
+);*/
 
 create table pagos(
 id int (11) not null auto_increment,
