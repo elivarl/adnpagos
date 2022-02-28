@@ -23,9 +23,14 @@ public class RepositorioServicioElectricoMySQL implements RepositorioServicioEle
 	@SqlStatement (namespace = "electrico", value="eliminar")
 	private static String sqlEliminar;
 	
-	public RepositorioServicioElectricoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
-		this.customNamedParameterJdbcTemplate=customNamedParameterJdbcTemplate;
+	@SqlStatement(namespace="electrico", value="existe")
+	private static String sqlExiste;
 	
+	@SqlStatement(namespace="electrico", value="existePorId")
+	private static String sqlExistePorId; 
+	
+	public RepositorioServicioElectricoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
+		this.customNamedParameterJdbcTemplate=customNamedParameterJdbcTemplate;	
 	}
 
 	@Override
@@ -47,8 +52,17 @@ public class RepositorioServicioElectricoMySQL implements RepositorioServicioEle
 
 	@Override
 	public boolean existe(String numeroServicio) {
-		// TODO Auto-generated method stub
-		return false;
+		MapSqlParameterSource paramSource= new MapSqlParameterSource();
+		paramSource.addValue("numero_servicio", numeroServicio);
+		
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste, paramSource, Boolean.class);
+	}
+
+	@Override
+	public boolean existePorId(Long id) {
+		MapSqlParameterSource paramSource= new MapSqlParameterSource();
+		paramSource.addValue("id", id);
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId, paramSource, Boolean.class);
 	}
 
 }

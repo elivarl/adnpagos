@@ -7,5 +7,6 @@ public interface RepositorioServicioElectrico {
 	void actualizar(ServicioElectrico servicio);
 	void eliminar (Long id);
 	boolean existe (String numeroServicio);
+	boolean existePorId(Long id);
 
 }
