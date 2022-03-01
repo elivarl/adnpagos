@@ -43,9 +43,12 @@ PRIMARY KEY(id)
 create table pagos_detalle(
 id int (11) not null auto_increment,
 descripcion varchar(150) not null,
+id_servicio int(11),
 id_pago int (11),
 PRIMARY KEY (id),
 FOREIGN KEY (id_pago) REFERENCES pagos (id)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY (id_servicio) REFERENCES servicios (id)
 ON DELETE CASCADE ON UPDATE CASCADE
 );
 

@@ -3,6 +3,7 @@ package com.ceiba.adnpagos.adaptador.repositorio;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.modelo.entidad.Pago;
+import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
@@ -14,6 +15,9 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 	
 	@SqlStatement(namespace = "pago", value = "crear")
 	private static String sqlCrear;
+	
+	@SqlStatement (namespace = "pago", value="crearpd")
+	private static String sqlCrearPagoDetalle;
 	
 	
 	public RepositorioServicioPagoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -40,6 +44,10 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 	public void existePorId(Long id) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void crearPagoDetalle(PagoDetalle pagoDetalle) {
+		this.customNamedParameterJdbcTemplate.crear(pagoDetalle, sqlCrearPagoDetalle);
 	}
 
 }
