@@ -1,15 +1,18 @@
-package com.ceiba.adnpagos.modelo.entidad;
+package com.ceiba.adnpagos.comando;
 
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
-@Getter
-public class Pago {
+@NoArgsConstructor
+public class ComandoPago {
 	private Long id;
 	private LocalDateTime fechaPago;
 	private String identificacionCliente;
 	private Double valorTotal;
+
 }
