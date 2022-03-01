@@ -2,9 +2,11 @@ package com.ceiba.adnpagos.modelo.dto;
 
 import java.time.LocalDateTime;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@AllArgsConstructor
 public class DtoServicioElectrico {
 	private Long id;
 	private String numeroServicio;
@@ -13,6 +15,7 @@ public class DtoServicioElectrico {
 	private String mesPago;
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
+	private boolean estado;
 	private LocalDateTime fechaCreacion;
 
 }
