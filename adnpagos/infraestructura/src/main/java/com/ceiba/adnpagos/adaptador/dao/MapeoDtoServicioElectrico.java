@@ -6,14 +6,13 @@ import java.time.LocalDateTime;
 
 import org.springframework.jdbc.core.RowMapper;
 
-
-import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
+import com.ceiba.adnpagos.modelo.dto.*;
 import com.ceiba.infraestructura.jdbc.MapperResult;
 
-public class MapeoServicioElectrico implements RowMapper<ServicioElectrico>, MapperResult {
+public class MapeoDtoServicioElectrico implements RowMapper<DtoServicioElectrico>, MapperResult {
 
 	@Override
-	public ServicioElectrico mapRow(ResultSet rs, int rowNum) throws SQLException {
+	public DtoServicioElectrico mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Long id= rs.getLong("id");
 		String numeroServicio= rs.getString("numero_servicio");
 		String identificacionCliente= rs.getString("identificacion_cliente");
@@ -24,7 +23,7 @@ public class MapeoServicioElectrico implements RowMapper<ServicioElectrico>, Map
 		boolean estado=rs.getBoolean("estado");
 		LocalDateTime fechaCreacion= extraerLocalDateTime(rs, "fecha_creacion");
 		
-		return new ServicioElectrico(id, numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado, fechaCreacion);
+		return new DtoServicioElectrico(id, numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado, fechaCreacion);
 	}
 
 }

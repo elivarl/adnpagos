@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,29 +23,26 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "Controlador comando pagos")
 public class ComandoControladorPago {
 	
-	private ManejadorCrearPago crearPago;
+	private List<ComandoPagoDetalle>  pagosDetalle;	
+	
+	private final ManejadorCrearPago crearPago;
 	@Autowired
 	public ComandoControladorPago(ManejadorCrearPago crearPago) {
 		this.crearPago=crearPago;
+		this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
 	}
 	
+	@PostMapping("/{id}/detalle")
+	public void addPagoDetalle(@PathVariable Long id) {
+		pagosDetalle.add(new ComandoPagoDetalle(id));
+		
+	}
+			
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> cear (@RequestBody ComandoPago comandoPago){
-		System.out.println(comandoPago.getValorTotal());
-		
-				
-		ComandoPagoDetalle cpd1= new ComandoPagoDetalle(null, "test1", 1L, null);
-		ComandoPagoDetalle cpd2= new ComandoPagoDetalle(null, "test2", 2L, null);
-		ComandoPagoDetalle cpd3= new ComandoPagoDetalle(null, "test3", 3L, null);
-		
-		List<ComandoPagoDetalle> pagosDetalle = new ArrayList<>();
-		pagosDetalle.add(cpd1);
-		pagosDetalle.add(cpd2);
-		pagosDetalle.add(cpd3);
-		
-		comandoPago.setPagosDetalle(pagosDetalle);
-		
+		System.out.println(comandoPago.getValorTotal());		
+		comandoPago.setPagosDetalle(this.pagosDetalle);
 		
 		return crearPago.ejecutar(comandoPago);
 	}

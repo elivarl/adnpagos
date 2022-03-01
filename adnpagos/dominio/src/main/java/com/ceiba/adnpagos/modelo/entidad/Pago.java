@@ -14,4 +14,8 @@ public class Pago {
 	private String identificacionCliente;
 	private Double valorTotal;
 	private List<PagoDetalle> pagosDetalle;
+	
+	public void aniadirPago(PagoDetalle detalle) {
+		pagosDetalle.add(detalle);
+	}
 }

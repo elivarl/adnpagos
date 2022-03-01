@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.modelo.dto.DtoServicioElectrico;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
@@ -23,6 +24,11 @@ public class DaoServicioElectricoMySQL implements DaoServicioElectrico{
 
 	@Override
 	public List<DtoServicioElectrico> listar() {
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoDtoServicioElectrico());
+	}
+
+	@Override
+	public List<ServicioElectrico> listarServicio() {
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoServicioElectrico());
 	}
 

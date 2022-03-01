@@ -6,8 +6,8 @@ import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 public interface RepositorioPago {
 	Long crear (Pago pago);
 	public void actualizar (Pago pago);
-	public void elimnar(Long id);
-	public void existePorId(Long id);
+	public void eliminar(Long id);
+	public boolean existePorId(Long id);
 	
 	//métodos detalle
 	public void crearPagoDetalle(PagoDetalle pagoDetalle);

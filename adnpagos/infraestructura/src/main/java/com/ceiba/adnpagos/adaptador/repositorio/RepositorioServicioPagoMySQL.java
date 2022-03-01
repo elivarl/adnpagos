@@ -35,15 +35,14 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 	}
 
 	@Override
-	public void elimnar(Long id) {
+	public void eliminar(Long id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void existePorId(Long id) {
-		// TODO Auto-generated method stub
-		
+	public boolean existePorId(Long id) {
+		return false;
 	}
 	@Override
 	public void crearPagoDetalle(PagoDetalle pagoDetalle) {

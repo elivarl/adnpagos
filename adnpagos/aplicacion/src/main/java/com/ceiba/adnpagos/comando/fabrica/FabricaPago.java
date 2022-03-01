@@ -23,7 +23,7 @@ public class FabricaPago {
 		List<PagoDetalle> pagosDetalle = new ArrayList<PagoDetalle>();
 		
 		for (ComandoPagoDetalle comandoPagoDetalle : listaComandoPagoDetalle) {
-			pagosDetalle.add(new PagoDetalle(comandoPagoDetalle.getId(), comandoPagoDetalle.getDescripcion(), comandoPagoDetalle.getIdServicio(), comandoPagoDetalle.getIdPago()));
+			pagosDetalle.add(new PagoDetalle(null, null, comandoPagoDetalle.getIdServicio(), null));
 		}
 		return pagosDetalle;
 	}
