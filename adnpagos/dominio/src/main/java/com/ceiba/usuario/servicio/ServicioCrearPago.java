@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Predicate;
 
+import com.ceiba.adnpagos.modelo.entidad.NoLaboral;
 import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
@@ -29,7 +30,7 @@ public class ServicioCrearPago {
 	public Long ejecutar(Pago pago) {
 		Long idPago = this.repositorioPago.crear(pago);
 		System.out.println("Id pago: " + idPago);
-		pago.setFechaPago(LocalDateTime.now());
+		pago.setFechaPago(obtenerFechaLaboralPago());
 
 		// guarda lista detalles
 		guardarListaDetalles(pago.getPagosDetalle(), idPago);
@@ -93,6 +94,18 @@ public class ServicioCrearPago {
 		pago.setId(idPago);
 		pago.setValorTotal(sumarTotalDetalles(pago.getPagosDetalle()));
 		repositorioPago.actualizar(pago);
+	}
+	
+	private LocalDateTime obtenerFechaLaboralPago() {
+		if (LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())||LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SUNDAY.toString())) {
+			if(LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())) {
+				return LocalDateTime.now().plusDays(2);
+			}else {
+				return LocalDateTime.now().plusDays(1);
+			}
+			
+		}
+		return LocalDateTime.now();
 	}
 
 }
