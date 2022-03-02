@@ -8,6 +8,7 @@ import lombok.Data;
 public class PagoDetalle {
 	private Long id;
 	private String descripcion;
+	private Double valor;
 	private Long idServicio;
 	private Long idPago;
 	

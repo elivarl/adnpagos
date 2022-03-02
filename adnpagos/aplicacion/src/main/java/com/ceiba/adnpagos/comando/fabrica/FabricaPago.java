@@ -15,7 +15,7 @@ public class FabricaPago {
 	
 		
 	public Pago crear (ComandoPago comandoPago) {
-		return new Pago(comandoPago.getId(), comandoPago.getFechaPago(), comandoPago.getIdentificacionCliente(), comandoPago.getValorTotal(), crearListaPagoDetalle(comandoPago.getPagosDetalle()));
+		return new Pago(comandoPago.getId(), null, comandoPago.getIdentificacionCliente(), 0.0, crearListaPagoDetalle(comandoPago.getPagosDetalle()));
 	}
 	
 	private List<PagoDetalle> crearListaPagoDetalle(List<ComandoPagoDetalle> listaComandoPagoDetalle){
@@ -23,7 +23,7 @@ public class FabricaPago {
 		List<PagoDetalle> pagosDetalle = new ArrayList<PagoDetalle>();
 		
 		for (ComandoPagoDetalle comandoPagoDetalle : listaComandoPagoDetalle) {
-			pagosDetalle.add(new PagoDetalle(null, null, comandoPagoDetalle.getIdServicio(), null));
+			pagosDetalle.add(new PagoDetalle(null, null, null,comandoPagoDetalle.getIdServicio(), null));
 		}
 		return pagosDetalle;
 	}

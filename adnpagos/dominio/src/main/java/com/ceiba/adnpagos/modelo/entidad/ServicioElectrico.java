@@ -3,9 +3,9 @@ package com.ceiba.adnpagos.modelo.entidad;
 import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
+@Data
 @AllArgsConstructor
 public class ServicioElectrico {
 		

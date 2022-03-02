@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,14 +35,22 @@ public class ComandoControladorPago {
 	
 	@PostMapping("/{id}/detalle")
 	public void addPagoDetalle(@PathVariable Long id) {
-		pagosDetalle.add(new ComandoPagoDetalle(id));
-		
+		System.out.println("Servicio con id:  "+id +" añadido");
+		pagosDetalle.add(new ComandoPagoDetalle(id));		
 	}
+	
+	@DeleteMapping("/{id}/detalle")
+	public void deletePagoDetalle(@PathVariable Long id) {
+		System.out.println("Servicio con id:  "+id +" eliminado");		
+		pagosDetalle.remove(new ComandoPagoDetalle(id));		
+	}
+	
+	
 			
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> cear (@RequestBody ComandoPago comandoPago){
-		System.out.println(comandoPago.getValorTotal());		
+				
 		comandoPago.setPagosDetalle(this.pagosDetalle);
 		
 		return crearPago.ejecutar(comandoPago);

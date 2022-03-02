@@ -16,6 +16,9 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 	@SqlStatement(namespace = "pago", value = "crear")
 	private static String sqlCrear;
 	
+	@SqlStatement(namespace = "pago", value = "actualizar")
+	private static String sqlActualizar;
+	
 	@SqlStatement (namespace = "pago", value="crearpd")
 	private static String sqlCrearPagoDetalle;
 	
@@ -30,8 +33,7 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 
 	@Override
 	public void actualizar(Pago pago) {
-		// TODO Auto-generated method stub
-		
+		this.customNamedParameterJdbcTemplate.actualizar(pago, sqlActualizar);
 	}
 
 	@Override
