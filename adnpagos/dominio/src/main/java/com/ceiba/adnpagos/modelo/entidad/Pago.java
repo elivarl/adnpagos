@@ -12,7 +12,10 @@ public class Pago {
 	private Long id;
 	private LocalDateTime fechaPago;
 	private String identificacionCliente;
-	private Double valorTotal;
+	private Double subTotal;
+	private String porcentajeDescuento;
+	private Double valorDescuento;
+	private Double total;
 	private List<PagoDetalle> pagosDetalle;
 	
 	public void aniadirPago(PagoDetalle detalle) {

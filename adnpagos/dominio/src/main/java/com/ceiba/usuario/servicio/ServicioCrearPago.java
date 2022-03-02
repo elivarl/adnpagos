@@ -31,12 +31,12 @@ public class ServicioCrearPago {
 		Long idPago = this.repositorioPago.crear(pago);
 		System.out.println("Id pago: " + idPago);
 		pago.setFechaPago(obtenerFechaLaboralPago());
-
+		
 		// guarda lista detalles
 		guardarListaDetalles(pago.getPagosDetalle(), idPago);
 
 		// actualizar pago valor total
-		actualizarValorTotalPago(idPago, pago);
+		actualizarSubTotalPago(idPago, pago);
 
 		// actualiza estado pago
 		actualizarEstadoServicio(pago.getPagosDetalle());
@@ -74,7 +74,7 @@ public class ServicioCrearPago {
 		return null;
 	}
 
-	private double sumarTotalDetalles(List<PagoDetalle> detalles) {
+	private double sumarSubTotalDetalles(List<PagoDetalle> detalles) {
 		return detalles.stream().mapToDouble(d -> d.getValor()).sum();
 	}
 
@@ -90,9 +90,9 @@ public class ServicioCrearPago {
 
 	}
 
-	private void actualizarValorTotalPago(Long idPago, Pago pago) {
+	private void actualizarSubTotalPago(Long idPago, Pago pago) {
 		pago.setId(idPago);
-		pago.setValorTotal(sumarTotalDetalles(pago.getPagosDetalle()));
+		pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
 		repositorioPago.actualizar(pago);
 	}
 	

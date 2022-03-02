@@ -36,7 +36,10 @@ create table pagos(
 id int (11) not null auto_increment,
 fecha_pago datetime null,
 identificacion_cliente varchar(50) not null,
-valor_total decimal(8,3) not null,
+subtotal decimal(8,3) not null,
+porcentaje_descuento varchar(2) not null,
+valor_descuento decimal(8,3) not null,
+total decimal(8,3) not null,
 PRIMARY KEY(id)
 );
 
