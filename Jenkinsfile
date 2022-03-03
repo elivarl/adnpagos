@@ -52,7 +52,7 @@ pipeline {
         echo '------------>Análisis de código estático <------------'		
 		
 		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:adnpagos-elivar.largo', 
-        sonarName:'CeibaADN-AdnPagos(elivar.largo)', 
+        sonarName:'"CeibaADN-AdnPagos(elivar.largo)"', 
         sonarPathProperties:'./sonar-project.properties')
        
       }
