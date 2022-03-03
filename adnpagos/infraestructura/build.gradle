@@ -41,7 +41,7 @@ dependencies {
 	runtimeOnly project.ext.db
 	testImplementation project.ext.flywaytest
 	
-	implementation project.ext.slf
+	//implementation project.ext.slf
 
 	
 	implementation project(':dominio')
