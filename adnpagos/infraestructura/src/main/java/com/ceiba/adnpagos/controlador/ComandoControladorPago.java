@@ -1,7 +1,9 @@
 package com.ceiba.adnpagos.controlador;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,10 +66,18 @@ public class ComandoControladorPago {
 	
 	@GetMapping("/test")
 	public void test() {
-		System.out.println("Día de la semana: "+LocalDate.now().getDayOfWeek());
+		/*System.out.println("Día de la semana: "+LocalDate.now().getDayOfWeek());
 		System.out.println(LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString()));
 		
-		System.out.println("Test validaFecha: "+validaFechaLaboral());
+		System.out.println("Test validaFecha: "+validaFechaLaboral());*/
+		
+		LocalDateTime ldt1 = LocalDateTime.now();
+		LocalDateTime ldt2 = LocalDateTime.now();
+		
+				
+		Duration d= Duration.between(ldt1.plusDays(5), ldt2);
+		long dias= d.toDays();
+		System.out.println("Duaración: "+dias);
 	}
 	
 	

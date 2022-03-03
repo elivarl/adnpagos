@@ -15,7 +15,7 @@ public class FabricaPago {
 	
 		
 	public Pago crear (ComandoPago comandoPago) {
-		return new Pago(comandoPago.getId(), null, comandoPago.getIdentificacionCliente(),0.0,"", 0.0, 0.0, crearListaPagoDetalle(comandoPago.getPagosDetalle()));
+		return new Pago(comandoPago.getId(), comandoPago.getFechaPago(), comandoPago.getIdentificacionCliente(),0.0,"", 0.0, 0.0, crearListaPagoDetalle(comandoPago.getPagosDetalle()));
 	}
 	
 	private List<PagoDetalle> crearListaPagoDetalle(List<ComandoPagoDetalle> listaComandoPagoDetalle){

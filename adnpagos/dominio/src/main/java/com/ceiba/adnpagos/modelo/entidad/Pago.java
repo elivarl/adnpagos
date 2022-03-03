@@ -17,8 +17,5 @@ public class Pago {
 	private Double valorDescuento;
 	private Double total;
 	private List<PagoDetalle> pagosDetalle;
-	
-	public void aniadirPago(PagoDetalle detalle) {
-		pagosDetalle.add(detalle);
-	}
+
 }

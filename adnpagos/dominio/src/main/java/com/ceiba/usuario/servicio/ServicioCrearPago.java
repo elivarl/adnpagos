@@ -1,5 +1,6 @@
 package com.ceiba.usuario.servicio;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,6 +10,7 @@ import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
+import com.ceiba.adnpagos.puerto.dao.ReglaPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
 
@@ -20,23 +22,32 @@ public class ServicioCrearPago {
 
 	private final RepositorioServicioElectrico repositorioServicioElectrico;
 
+	private final ReglaPago reglaPago;
+
 	public ServicioCrearPago(RepositorioPago repositorioPago, DaoServicioElectrico daoServicio,
-			RepositorioServicioElectrico repositorioServicioElectrico) {
+			RepositorioServicioElectrico repositorioServicioElectrico, ReglaPago reglaPago) {
 		this.repositorioPago = repositorioPago;
 		this.daoServicio = daoServicio;
 		this.repositorioServicioElectrico = repositorioServicioElectrico;
+		this.reglaPago = reglaPago;
 	}
 
 	public Long ejecutar(Pago pago) {
+		pago.setFechaPago(obtenerFechaLaboralPago(pago.getFechaPago()));
 		Long idPago = this.repositorioPago.crear(pago);
 		System.out.println("Id pago: " + idPago);
-		pago.setFechaPago(obtenerFechaLaboralPago());
 		
+
 		// guarda lista detalles
 		guardarListaDetalles(pago.getPagosDetalle(), idPago);
 
 		// actualizar pago valor total
 		actualizarSubTotalPago(idPago, pago);
+		
+		ServicioElectrico servicioElectrico = obtenerServicioPorId(p -> p.getId() == pago.getPagosDetalle().get(0).getIdServicio());
+
+		// aplicar reglas
+		repositorioPago.actualizar(aplicarReglasPago(idPago, pago, servicioElectrico));
 
 		// actualiza estado pago
 		actualizarEstadoServicio(pago.getPagosDetalle());
@@ -95,17 +106,76 @@ public class ServicioCrearPago {
 		pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
 		repositorioPago.actualizar(pago);
 	}
+
+	public LocalDateTime obtenerFechaLaboralPago(LocalDateTime fechaPago) {
+		if (fechaPago.getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())
+				|| fechaPago.getDayOfWeek().name().equals(NoLaboral.SUNDAY.toString())) {
+			
+			if (fechaPago.getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())) {
+				return fechaPago.plusDays(2);
+			} else {
+				return fechaPago.plusDays(1);
+			}
+
+		}
+		return fechaPago;
+	}
+
+	public Pago aplicarReglasPago(Long idPago, Pago pago, ServicioElectrico servicioElectrico) {
+		if (pago.getPagosDetalle().size() < 2) {
+			pago.setId(idPago);
+			pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
+			//System.out.println("Fecha pago: "+pago.getFechaPago()+" Fecha servicio: "+servicioElectrico.getFechaMaximaPago());
+			long dias = calcularDias(pago.getFechaPago(), servicioElectrico.getFechaMaximaPago());
+			//System.out.println("Dias: "+dias);
+			long porcentaheDescuento = obtenerPorcentajeDescuento(dias);
+			//System.out.println("Porcentahedesc: "+porcentaheDescuento);
+			double valorDescuento = calcularValorDescuento(pago.getSubTotal(), porcentaheDescuento);
+			double totalPago = calcularTotalPago(pago.getSubTotal(), porcentaheDescuento, dias);
+			//System.out.println("Total: "+pago.getSubTotal());
+			pago.setValorDescuento(valorDescuento);
+			pago.setPorcentajeDescuento(String.valueOf(porcentaheDescuento));
+			pago.setTotal(totalPago);
+			return pago;
+			//repositorioPago.actualizar(pago);
+		}
+		return pago;
+	}
 	
-	private LocalDateTime obtenerFechaLaboralPago() {
-		if (LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())||LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SUNDAY.toString())) {
-			if(LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())) {
-				return LocalDateTime.now().plusDays(2);
-			}else {
-				return LocalDateTime.now().plusDays(1);
+	public long calcularDias(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
+		Duration d= Duration.between(fechaInicial, fechaFinal);	
+		LocalDateTime fi=fechaInicial;
+		long diasLaborales=0;
+		for (int i = 1; i <= d.toDays(); i++) {
+			String diaLaborable=fi.plusDays(i).getDayOfWeek().name();			
+			if(!diaLaborable.equals("SATURDAY")) {
+				if (!diaLaborable.equals("SUNDAY")) {
+					diasLaborales++;
+				}
 			}
 			
 		}
-		return LocalDateTime.now();
+		return diasLaborales;
+	}
+	
+	private double calcularValorDescuento(Double subtotal, long porcentajeDescuento) {		
+		return (subtotal*porcentajeDescuento)/100;
+	}
+
+	private long obtenerPorcentajeDescuento(long dias) {
+		if (dias > 3) {
+			return 8;
+		}else if(dias<=3&&dias>=0) {
+			return 0;
+		}
+		return 10;
+	}
+
+	private double calcularTotalPago(Double subtotal, long porcentajeDescuento, long dias) {
+		if(dias>0) {
+			return subtotal-((subtotal*porcentajeDescuento)/100);
+		}
+		return subtotal+((subtotal*porcentajeDescuento)/100);
 	}
 
 }
