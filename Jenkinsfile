@@ -30,14 +30,15 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
+		
       }
     }
     
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Compile & Unit Tests<------------"
-		sh 'chmod +x ./adnpagos/gradlew'
-		sh './andpagos/gradlew --b ./adnpagos/build.gradle test'
+		sh 'chmod +x /adnpagos/gradlew'
+		sh './adnpagos/gradlew --b ./adnpagos/build.gradle test'
 
       }
     }
