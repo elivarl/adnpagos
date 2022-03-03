@@ -46,6 +46,14 @@ pipeline {
     }
 
     stage('Static Code Analysis') {
+	
+	steps{
+        echo '------------>Análisis de código estático 1<------------'
+		withSonarQubeEnv('Sonar') {
+		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        }
+       
+      }
       steps{
         echo '------------>Análisis de código estático<------------'
 		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:adnpagos-elivar.largo', 
