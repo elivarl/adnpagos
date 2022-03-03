@@ -37,7 +37,7 @@ pipeline {
       steps{
         echo "------------>Compile & Unit Tests<------------"
 		sh 'chmod +x gradlew'
-		sh './gradlew --b ./build.gradle test'
+		sh './andpagos/gradlew --b ./adnpagos/build.gradle test'
 
       }
     }
@@ -57,7 +57,7 @@ pipeline {
       steps {
         echo "------------>Build<------------"
 		//Construir sin tarea test que se ejecutó previamente
-		sh './gradlew --b ./build.gradle build -x test'
+		sh './adnpagos/gradlew --b ./adnpagos/build.gradle build -x test'
       }
     }  
   }
