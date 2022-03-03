@@ -32,6 +32,7 @@ pipeline {
     stage('Checkout') {
       steps{
         echo "------------>Checkout<------------"
+		//checkout scm
 		
       }
     }
@@ -48,10 +49,7 @@ pipeline {
     stage('Static Code Analysis') {
 	
 	steps{
-        echo '------------>Análisis de código estático <------------'
-		withSonarQubeEnv('Sonar') {
-		sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
+        echo '------------>Análisis de código estático <------------'		
 		
 		sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba.adn:adnpagos-elivar.largo', 
         sonarName:'CeibaADN-AdnPagos(elivar.largo)', 
