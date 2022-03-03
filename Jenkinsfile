@@ -37,7 +37,7 @@ pipeline {
     stage('Compile & Unit Tests') {
       steps{
         echo "------------>Compile & Unit Tests<------------"
-		sh 'chmod +x /adnpagos/gradlew'
+		sh 'chmod +x adnpagos/gradlew'
 		sh './adnpagos/gradlew --b ./adnpagos/build.gradle test'
 
       }
