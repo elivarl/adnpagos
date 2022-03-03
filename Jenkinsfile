@@ -1,5 +1,3 @@
-@Library('ceiba-jenkins-library')
-
 pipeline {
   //Donde se va a ejecutar el Pipeline
   agent {
