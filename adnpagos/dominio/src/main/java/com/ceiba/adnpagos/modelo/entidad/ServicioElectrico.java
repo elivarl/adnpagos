@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Getter;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
 
 @Getter
 public class ServicioElectrico {
@@ -16,6 +17,8 @@ public class ServicioElectrico {
 	private final String OBLIGATORIO_VALOR="Se debe ingresar el valor del servicio";
 	private final String OBLIGATORIO_ESTADO="Se debe ingresar el estado del servicio";
 	private final String OBLIGATORIO_FECHA_CREACION="Se debe ingresar la fecha de creación";
+
+	private final String VALIDAR_POSITIVO="Se debe ingresar un valor positivo";
 
 	private Long id;
 	private String numeroServicio;
@@ -37,6 +40,9 @@ public class ServicioElectrico {
 		validarObligatorio(valor, OBLIGATORIO_VALOR);
 		validarObligatorio(estado, OBLIGATORIO_ESTADO);
 		validarObligatorio(fechaCreacion, OBLIGATORIO_FECHA_CREACION);
+
+		validarPositivo(valor, VALIDAR_POSITIVO);
+
 
 		this.id = id;
 		this.numeroServicio = numeroServicio;

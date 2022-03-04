@@ -29,7 +29,7 @@ public class ServicioCrearPago {
 	}
 
 	public Long ejecutar(Pago pago) {
-		pago.setFechaPago(obtenerFechaLaboralPago(pago.getFechaPago()));
+		///pago.setFechaPago(obtenerFechaLaboralPago(pago.getFechaPago()));
 		Long idPago = this.repositorioPago.crear(pago);
 
 		// guarda lista detalles
@@ -94,8 +94,8 @@ public class ServicioCrearPago {
 	}
 
 	private void actualizarSubTotalPago(Long idPago, Pago pago) {
-		pago.setId(idPago);
-		pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
+		//pago.setId(idPago);
+		//pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
 		repositorioPago.actualizar(pago);
 	}
 
@@ -114,7 +114,7 @@ public class ServicioCrearPago {
 	}
 
 	public Pago aplicarReglasPago(Long idPago, Pago pago, ServicioElectrico servicioElectrico) {
-		if (pago.getPagosDetalle().size() < 2) {
+		/*if (pago.getPagosDetalle().size() < 2) {
 			pago.setId(idPago);
 			pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
 			long dias = calcularDias(pago.getFechaPago(), servicioElectrico.getFechaMaximaPago());
@@ -127,7 +127,8 @@ public class ServicioCrearPago {
 			pago.setTotal(totalPago);
 			return pago;
 		}
-		return pago;
+		return pago;*/
+		return null;
 	}
 
 	public long calcularDias(LocalDateTime fechaInicial, LocalDateTime fechaFinal) {
