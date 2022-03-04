@@ -56,7 +56,7 @@ public class ServicioCrearPago {
 	}
 
 	private void guardarListaDetalles(List<PagoDetalle> detalles, Long idPago) {
-		for (PagoDetalle pagoDetalle : detalles) {
+		/*for (PagoDetalle pagoDetalle : detalles) {
 			pagoDetalle.setIdPago(idPago);
 			pagoDetalle.setDescripcion("Pago mes: "
 					+ obtenerServicioPorId(servicio -> servicio.getId() == pagoDetalle.getIdServicio()).getMes());
@@ -65,7 +65,7 @@ public class ServicioCrearPago {
 			System.out.println("Pago detalle idPago: " + pagoDetalle.getIdPago());
 			System.out.println("Pago detalle idServicio: " + pagoDetalle.getIdServicio());
 			crearPagoDetalle(pagoDetalle);
-		}
+		}*/
 
 	}
 

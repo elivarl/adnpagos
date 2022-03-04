@@ -10,15 +10,6 @@ import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
 
 @Getter
 public class Pago {
-	private Long id;
-	private LocalDateTime fechaPago;
-	private String identificacionCliente;
-	private Double subTotal;
-	private String porcentajeDescuentoRecargo;
-	private Double valorDescuentoRecargo;
-	private Double total;
-	private List<PagoDetalle> pagosDetalle;
-
 	private  final String OBLIGATORIO_FECHA_PAGO="Se debe ingresar el número de servicio";
 	private final String OBLIGATORIO_IDENTIFICACION_CLIENTE="Se debe ingresar la identificación del cliente";
 	private  final String OBLIGATORIO_SUBTOTAL="Se debe ingresar el subtotal";
@@ -28,6 +19,15 @@ public class Pago {
 	private final String OBLIGATORIO_PAGOS_DETALLE="Se debe ingresar el detalle de pagos";
 
 	private final String VALIDAR_POSITIVO="Se debe ingresar un valor positivo";
+
+	private Long id;
+	private LocalDateTime fechaPago;
+	private String identificacionCliente;
+	private Double subTotal;
+	private String porcentajeDescuentoRecargo;
+	private Double valorDescuentoRecargo;
+	private Double total;
+	private List<PagoDetalle> pagosDetalle;
 
 
 	public Pago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double subTotal, String porcentajeDescuentoRecargo, Double valorDescuentoRecargo, Double total, List<PagoDetalle> pagosDetalle) {

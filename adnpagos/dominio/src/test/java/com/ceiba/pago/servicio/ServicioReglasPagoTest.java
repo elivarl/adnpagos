@@ -118,8 +118,8 @@ public class ServicioReglasPagoTest {
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
 
 		// asert
-		assertEquals(porcentajeDescuento, pago.getPorcentajeDescuento());
-		assertEquals(valorDescuento, pago.getValorDescuento());
+		assertEquals(porcentajeDescuento,  pago.getPorcentajeDescuentoRecargo());
+		assertEquals(valorDescuento, pago.getValorDescuentoRecargo());
 
 	}
 
@@ -153,8 +153,8 @@ public class ServicioReglasPagoTest {
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
 
 		// asert
-		assertEquals(porcentajeDescuento, pago.getPorcentajeDescuento());
-		assertEquals(valorDescuento, pago.getValorDescuento());
+		assertEquals(porcentajeDescuento, pago.getPorcentajeDescuentoRecargo());
+		assertEquals(valorDescuento, pago.getValorDescuentoRecargo());
 
 	}
 
@@ -188,8 +188,8 @@ public class ServicioReglasPagoTest {
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
 
 		// asert
-		assertEquals(porcentajeRecargo, pago.getPorcentajeDescuento());
-		assertEquals(valorDescuento, pago.getValorDescuento());
+		assertEquals(porcentajeRecargo,  pago.getPorcentajeDescuentoRecargo());
+		assertEquals(valorDescuento, pago.getValorDescuentoRecargo());
 
 	}
 
