@@ -15,7 +15,7 @@ public class PagoTestDataBuilder {
 	private String porcentajeDescuento;
 	private Double valorDescuento;
 	private Double total;
-	private List<PagoDetalleTestDataBuilder> pagosDetalle;
+	private List<PagoDetalle> pagosDetalle;
 	
 	public PagoTestDataBuilder() {
 		fechaPago= LocalDateTime.now();	
@@ -61,21 +61,13 @@ public class PagoTestDataBuilder {
 		return this;
 	}
 	
-	public PagoTestDataBuilder conPagoDetalles(List<PagoDetalleTestDataBuilder> pagosDetalle) {
+	public PagoTestDataBuilder conPagoDetalles(List<PagoDetalle> pagosDetalle) {
 		this.pagosDetalle=pagosDetalle;
 		return this;
 	}
 	
 	public Pago build() {
-		return new Pago(id, fechaPago, identificacionCliente, subTotal, porcentajeDescuento, valorDescuento, total, obtenerListaPagosDetalle(pagosDetalle));
-	}
-	
-	private List<PagoDetalle> obtenerListaPagosDetalle(List<PagoDetalleTestDataBuilder> detalleTestDataBuilders){
-		List<PagoDetalle> detalles= new ArrayList<PagoDetalle>();
-		for (PagoDetalleTestDataBuilder pagoDetalleTestDataBuilder : detalleTestDataBuilders) {
-			detalles.add(pagoDetalleTestDataBuilder.build());
-		}
-		return detalles;
+		return new Pago(id, fechaPago, identificacionCliente, subTotal, porcentajeDescuento, valorDescuento, total, pagosDetalle);
 	}
 
 }

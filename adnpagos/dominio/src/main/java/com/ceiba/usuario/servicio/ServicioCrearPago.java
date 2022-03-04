@@ -22,14 +22,11 @@ public class ServicioCrearPago {
 
 	private final RepositorioServicioElectrico repositorioServicioElectrico;
 
-	private final ReglaPago reglaPago;
-
 	public ServicioCrearPago(RepositorioPago repositorioPago, DaoServicioElectrico daoServicio,
-			RepositorioServicioElectrico repositorioServicioElectrico, ReglaPago reglaPago) {
+			RepositorioServicioElectrico repositorioServicioElectrico) {
 		this.repositorioPago = repositorioPago;
 		this.daoServicio = daoServicio;
 		this.repositorioServicioElectrico = repositorioServicioElectrico;
-		this.reglaPago = reglaPago;
 	}
 
 	public Long ejecutar(Pago pago) {
@@ -80,7 +77,7 @@ public class ServicioCrearPago {
 				return servicio;
 			}
 		}
-		return new ServicioElectrico(1L, "1717213183", "Elivar Largo", "Enero","Elivar",LocalDateTime.parse("2022-03-26 13:17:17") , 10.0,false, null);
+		return new ServicioElectrico(1L, "1717213183", "Elivar Largo", "Enero","Elivar",LocalDateTime.parse("2022-03-26T15:00:00.104") , 10.0,false, null);
 	}
 
 	private double sumarSubTotalDetalles(List<PagoDetalle> detalles) {

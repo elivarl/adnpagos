@@ -13,8 +13,8 @@ import com.ceiba.usuario.servicio.ServicioCrearPago;
 public class BeanServicioPago {
 	
 	@Bean
-	public ServicioCrearPago crearPago(RepositorioPago repositorioPago, DaoServicioElectrico daoServicio, RepositorioServicioElectrico servicioElectrico, ReglaPago reglaPago) {
-		return new ServicioCrearPago(repositorioPago, daoServicio, servicioElectrico, reglaPago);
+	public ServicioCrearPago crearPago(RepositorioPago repositorioPago, DaoServicioElectrico daoServicio, RepositorioServicioElectrico servicioElectrico) {
+		return new ServicioCrearPago(repositorioPago, daoServicio, servicioElectrico);
 	}
 
 }

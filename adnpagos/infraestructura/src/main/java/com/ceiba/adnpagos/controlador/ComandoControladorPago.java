@@ -42,14 +42,12 @@ public class ComandoControladorPago {
 	@PostMapping("/{id}/detalle")
 	@ApiOperation("Añadir un servicio a un pago")
 	public void addPagoDetalle(@PathVariable Long id) {
-		System.out.println("Servicio con id:  "+id +" añadido");
 		pagosDetalle.add(new ComandoPagoDetalle(id));		
 	}
 	
 	@DeleteMapping("/{id}/detalle")
 	@ApiOperation("Eliminar un servicio de un pago")
 	public void deletePagoDetalle(@PathVariable Long id) {
-		System.out.println("Servicio con id:  "+id +" eliminado");		
 		pagosDetalle.remove(new ComandoPagoDetalle(id));		
 	}
 	
@@ -58,8 +56,8 @@ public class ComandoControladorPago {
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> crear (@RequestBody ComandoPago comandoPago){
-		comandoPago.setPagosDetalle(this.pagosDetalle);
-		this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
+		//comandoPago.setPagosDetalle(this.pagosDetalle);
+		//this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
 		return crearPago.ejecutar(comandoPago);
 	}
 

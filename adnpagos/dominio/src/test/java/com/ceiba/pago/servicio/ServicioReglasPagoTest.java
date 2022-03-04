@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.usuario.servicio.ServicioCrearPago;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -32,7 +33,7 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
 		// act
 		LocalDateTime fechaServicioCrearPagoSabado = servicioCrearPago.obtenerFechaLaboralPago(diaPagoSabado);
@@ -54,7 +55,7 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
 		// act
 		LocalDateTime fechaServicioCrearPagoDiaDomingo = servicioCrearPago.obtenerFechaLaboralPago(diaPagoDomingo);
@@ -76,7 +77,7 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
 		// act
 		LocalDateTime fechaServicioCrearPagoDiaNormal = servicioCrearPago.obtenerFechaLaboralPago(diaPagoNormal);
@@ -94,23 +95,24 @@ public class ServicioReglasPagoTest {
 		ServicioElectrico servicioElectrico = new ServicioElectrico(1L, "1", "1717213183", "Elivar Oswaldo Largo",
 				"Abril", LocalDateTime.parse("2022-03-18T15:00:00.104"), 90.00, false, null);
 
+
 		RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
 		DaoServicioElectrico daoServicio = Mockito.mock(DaoServicioElectrico.class);
 		RepositorioServicioElectrico repositorioServicioElectrico = Mockito.mock(RepositorioServicioElectrico.class);
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
-		List<PagoDetalleTestDataBuilder> detalleTestDataBuilders = new ArrayList<PagoDetalleTestDataBuilder>();
-		detalleTestDataBuilders
-				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()));
+		List<PagoDetalle> detallesPago = new ArrayList<PagoDetalle>();
+		detallesPago
+				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()).build());
 
 		String porcentajeDescuento = "8";
 		Double valorDescuento = 7.2;
 
 		PagoTestDataBuilder pagoTestDataBuilder = new PagoTestDataBuilder().conFechaPago(diaPagoNormal)
-				.conPagoDetalles(detalleTestDataBuilders);
+				.conPagoDetalles(detallesPago);
 
 		// act
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
@@ -135,17 +137,17 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
-		List<PagoDetalleTestDataBuilder> detalleTestDataBuilders = new ArrayList<PagoDetalleTestDataBuilder>();
-		detalleTestDataBuilders
-				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()));
+		List<PagoDetalle> detallesPago = new ArrayList<PagoDetalle>();
+		detallesPago
+				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()).build());
 
 		String porcentajeDescuento = "0";
 		Double valorDescuento = 0.0;
 
 		PagoTestDataBuilder pagoTestDataBuilder = new PagoTestDataBuilder().conFechaPago(diaPagoNormal)
-				.conPagoDetalles(detalleTestDataBuilders);
+				.conPagoDetalles(detallesPago);
 
 		// act
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
@@ -170,17 +172,17 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
-		List<PagoDetalleTestDataBuilder> detalleTestDataBuilders = new ArrayList<PagoDetalleTestDataBuilder>();
-		detalleTestDataBuilders
-				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()));
+		List<PagoDetalle> detallesPago = new ArrayList<PagoDetalle>();
+		detallesPago
+				.add(new PagoDetalleTestDataBuilder().conIdServicio(1L).conValor(servicioElectrico.getValor()).build());
 
 		String porcentajeRecargo = "10";
 		Double valorDescuento = 9.00;
 
 		PagoTestDataBuilder pagoTestDataBuilder = new PagoTestDataBuilder().conFechaPago(diaPagoNormal)
-				.conPagoDetalles(detalleTestDataBuilders);
+				.conPagoDetalles(detallesPago);
 
 		// act
 		Pago pago = servicioCrearPago.aplicarReglasPago(1L, pagoTestDataBuilder.build(), servicioElectrico);
@@ -206,7 +208,7 @@ public class ServicioReglasPagoTest {
 		ReglaPago reglaPago = Mockito.mock(ReglaPago.class);
 
 		ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago, daoServicio,
-				repositorioServicioElectrico, reglaPago);
+				repositorioServicioElectrico);
 
 		// act
 		Long diasLaborables = servicioCrearPago.calcularDias(diaPago, diaPagoMaximo);
