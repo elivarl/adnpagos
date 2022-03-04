@@ -58,8 +58,7 @@ public class ComandoControladorPago {
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> crear (@RequestBody ComandoPago comandoPago){
-				
-		comandoPago.setPagosDetalle(this.pagosDetalle);
+		//comandoPago.setPagosDetalle(this.pagosDetalle);
 		this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
 		return crearPago.ejecutar(comandoPago);
 	}
