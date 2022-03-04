@@ -10,7 +10,6 @@ import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
-import com.ceiba.adnpagos.puerto.dao.ReglaPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
 
@@ -60,7 +59,7 @@ public class ServicioCrearPago {
 		for (PagoDetalle pagoDetalle : detalles) {
 			pagoDetalle.setIdPago(idPago);
 			pagoDetalle.setDescripcion("Pago mes: "
-					+ obtenerServicioPorId(servicio -> servicio.getId() == pagoDetalle.getIdServicio()).getMesPago());
+					+ obtenerServicioPorId(servicio -> servicio.getId() == pagoDetalle.getIdServicio()).getMes());
 			pagoDetalle.setValor(
 					obtenerServicioPorId(servicio -> servicio.getId() == pagoDetalle.getIdServicio()).getValor());
 			System.out.println("Pago detalle idPago: " + pagoDetalle.getIdPago());
@@ -77,7 +76,7 @@ public class ServicioCrearPago {
 				return servicio;
 			}
 		}
-		return new ServicioElectrico(1L, "1717213183", "Elivar Largo", "Enero","Elivar",LocalDateTime.parse("2022-03-26T15:00:00.104") , 10.0,false, null);
+		return null;
 	}
 
 	private double sumarSubTotalDetalles(List<PagoDetalle> detalles) {
