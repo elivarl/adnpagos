@@ -30,6 +30,7 @@ import java.util.List;
 @WebMvcTest(ComandoControladorUsuario.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+
 public class ComandoControladorPagoTest {
 
     @Autowired
@@ -46,12 +47,12 @@ public class ComandoControladorPagoTest {
         ComandoPagoDetalle comandoPagoDetalle = new ComandoPagoDetalleTestDataBuilder().conIdServicio(1L).build();
         comandoPagoDetalles.add(comandoPagoDetalle);
         ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conPagoDetalles(comandoPagoDetalles).build();
-
+        ComandoPago cp= new ComandoPago();
         // act - assert
         mocMvc.perform(post("/pagos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoPago)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 4}"));
     }
 }

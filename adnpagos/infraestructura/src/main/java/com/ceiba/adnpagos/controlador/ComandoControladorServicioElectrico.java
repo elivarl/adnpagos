@@ -45,6 +45,7 @@ public class ComandoControladorServicioElectrico {
 	@PutMapping("/{id}")
 	@ApiOperation("Actualizar un servicio eléctrico")
 	public void actualizar (@RequestBody ComandoServicioElectrico comandoServicioElectrico, @PathVariable Long id) {
+		System.out.println("id..."+id);
 		comandoServicioElectrico.setId(id);
 		this.manejadorActualizarServicioElectrico.ejecutar(comandoServicioElectrico);
 		

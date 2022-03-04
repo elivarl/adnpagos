@@ -44,7 +44,7 @@ public class ComandoControladorServicioElectricoTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(servicioElectrico)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 4}"));
     }
 
     @Test
@@ -52,11 +52,11 @@ public class ComandoControladorServicioElectricoTest {
     void deberiaActualizarUnServicioElectrico() throws Exception{
         // arrange
         Long id = 1L;
-        ComandoUsuario usuario = new ComandoUsuarioTestDataBuilder().build();
+        ComandoServicioElectrico servicioElectrico = new ComandoServicioElectricoTestDataBuilder().build();
         // act - assert
         mocMvc.perform(put("/servicios/{id}",id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(usuario)))
+                .content(objectMapper.writeValueAsString(servicioElectrico)))
                 .andExpect(status().isOk());
     }
 
@@ -74,7 +74,7 @@ public class ComandoControladorServicioElectricoTest {
         mocMvc.perform(get("/servicios")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$", hasSize(2)));
     }
 
 }

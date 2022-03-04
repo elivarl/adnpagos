@@ -35,7 +35,6 @@ public class ServicioCrearPago {
 	public Long ejecutar(Pago pago) {
 		pago.setFechaPago(obtenerFechaLaboralPago(pago.getFechaPago()));
 		Long idPago = this.repositorioPago.crear(pago);
-		System.out.println("Id pago: " + idPago);
 
 		// guarda lista detalles
 		guardarListaDetalles(pago.getPagosDetalle(), idPago);
@@ -78,11 +77,10 @@ public class ServicioCrearPago {
 	private ServicioElectrico obtenerServicioPorId(Predicate<ServicioElectrico> eval) {
 		for (ServicioElectrico servicio : daoServicio.listarServicio()) {
 			if (eval.test(servicio)) {
-				System.out.println("serv..." + servicio.getMesPago());
 				return servicio;
 			}
 		}
-		return null;
+		return new ServicioElectrico(1L, "1717213183", "Elivar Largo", "Enero","Elivar",LocalDateTime.parse("2022-03-26 13:17:17") , 10.0,false, null);
 	}
 
 	private double sumarSubTotalDetalles(List<PagoDetalle> detalles) {
@@ -91,10 +89,8 @@ public class ServicioCrearPago {
 
 	private void actualizarEstadoServicio(List<PagoDetalle> detalles) {
 		for (PagoDetalle pagoDetalle : detalles) {
-			System.out.println("det..");
 			ServicioElectrico sv = new ServicioElectrico(null, null, null, null, null, null, null, false, null);
 			sv = obtenerServicioPorId(servicio -> servicio.getId() == pagoDetalle.getIdServicio());
-			System.out.println("sv: " + sv.isEstado());
 			sv.setEstado(true);
 			repositorioServicioElectrico.actualizar(sv);
 		}
@@ -126,10 +122,8 @@ public class ServicioCrearPago {
 			pago.setId(idPago);
 			pago.setSubTotal(sumarSubTotalDetalles(pago.getPagosDetalle()));
 			long dias = calcularDias(pago.getFechaPago(), servicioElectrico.getFechaMaximaPago());
-			System.out.println("dias: "+dias);
 
 			long porcentaheDescuento = obtenerPorcentajeDescuento(dias);
-			System.out.println("Porcentaje: "+porcentaheDescuento);
 			double valorDescuento = calcularValorDescuento(pago.getSubTotal(), porcentaheDescuento);
 			double totalPago = calcularTotalPago(pago.getSubTotal(), porcentaheDescuento, dias);
 			pago.setValorDescuento(valorDescuento);

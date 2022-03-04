@@ -1,4 +1,4 @@
-package com.ceiba.usuario.servicio.testdatabuilder;
+package com.ceiba.pago.testdatabuilder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

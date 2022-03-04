@@ -1,5 +1,6 @@
 package com.ceiba.adnpagos.comando.manejador;
 
+import com.ceiba.usuario.servicio.ServicioActualizarServicioElectrico;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
@@ -12,17 +13,17 @@ import com.ceiba.manejador.ManejadorComando;
 public class ManejadorActualizarServicioElectrico implements ManejadorComando<ComandoServicioElectrico>{
 	
 	private final FabricaServicioElectrico fabricaServicioElectrico;
-	private final RepositorioServicioElectrico repositorioServicioElectrico;
+	private final ServicioActualizarServicioElectrico servicioActualizarServicioElectrico;
 	
-	public ManejadorActualizarServicioElectrico(FabricaServicioElectrico fabricaServicioElectrico, RepositorioServicioElectrico repositorioServicioElectrico) {
+	public ManejadorActualizarServicioElectrico(FabricaServicioElectrico fabricaServicioElectrico, ServicioActualizarServicioElectrico servicioActualizarServicioElectrico) {
 		this.fabricaServicioElectrico=fabricaServicioElectrico;
-		this.repositorioServicioElectrico=repositorioServicioElectrico;	
+		this.servicioActualizarServicioElectrico=servicioActualizarServicioElectrico;
 	}
 
 	@Override
 	public void ejecutar(ComandoServicioElectrico comandoServicioElectrico) {
 		ServicioElectrico servicioElectrico=fabricaServicioElectrico.crear(comandoServicioElectrico);
-		this.repositorioServicioElectrico.actualizar(servicioElectrico);
+		this.servicioActualizarServicioElectrico.ejeuctar(servicioElectrico);
 	}	
 	
 

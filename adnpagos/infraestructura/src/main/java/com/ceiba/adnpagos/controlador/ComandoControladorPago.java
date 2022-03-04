@@ -58,37 +58,10 @@ public class ComandoControladorPago {
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> crear (@RequestBody ComandoPago comandoPago){
-		//comandoPago.setPagosDetalle(this.pagosDetalle);
+		comandoPago.setPagosDetalle(this.pagosDetalle);
 		this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
 		return crearPago.ejecutar(comandoPago);
 	}
-	
-	@GetMapping("/test")
-	public void test() {
-		/*System.out.println("Día de la semana: "+LocalDate.now().getDayOfWeek());
-		System.out.println(LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString()));
-		
-		System.out.println("Test validaFecha: "+validaFechaLaboral());*/
-		
-		LocalDateTime ldt1 = LocalDateTime.now();
-		LocalDateTime ldt2 = LocalDateTime.now();
-		
-				
-		Duration d= Duration.between(ldt1.plusDays(5), ldt2);
-		long dias= d.toDays();
-		System.out.println("Duaración: "+dias);
-	}
-	
-	
-	private LocalDateTime validaFechaLaboral() {
-		if (LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())||LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SUNDAY.toString())) {
-			if(LocalDateTime.now().getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())) {
-				return LocalDateTime.now().plusDays(2);
-			}else {
-				return LocalDateTime.now().plusDays(1);
-			}			
-		}
-		return LocalDateTime.now();
-	}
+
 
 }

@@ -1,4 +1,4 @@
-package com.ceiba.usuario.servicio.testdatabuilder;
+package com.ceiba.pago.testdatabuilder;
 
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 

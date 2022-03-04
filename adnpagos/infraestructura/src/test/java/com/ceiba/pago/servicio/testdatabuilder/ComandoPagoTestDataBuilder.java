@@ -14,7 +14,7 @@ public class ComandoPagoTestDataBuilder {
     private List<ComandoPagoDetalle> comandoPagosDetalle;
 
     public ComandoPagoTestDataBuilder(){
-        id=1L;
+        id=null;
         fechaPago=LocalDateTime.now();
         identificacionCliente= UUID.randomUUID().toString();
 

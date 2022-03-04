@@ -15,7 +15,7 @@ public class ServicioActualizarUsuarioTest {
     @DisplayName("Deberia validar la existencia previa del usuario")
     void deberiaValidarLaExistenciaPreviaDelUsuario() {
         // arrange
-        Usuario usuario = new UsuarioTestDataBuilder().conId(1L).build();
+        Usuario usuario = new UsuarioTestDataBuilder().conId(10L).build();
         RepositorioUsuario repositorioUsuario = Mockito.mock(RepositorioUsuario.class);
         Mockito.when(repositorioUsuario.existePorId(Mockito.anyLong())).thenReturn(false);
         ServicioActualizarUsuario servicioActualizarUsuario = new ServicioActualizarUsuario(repositorioUsuario);

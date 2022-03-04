@@ -16,13 +16,13 @@ public class ComandoServicioElectricoTestDataBuilder {
     private LocalDateTime fechaCreacion;
 
     public ComandoServicioElectricoTestDataBuilder(){
-        id=0L;
+        id=1L;
         numeroServicio="12345";
         identificacionCliente="1717213183";
         nombreCliente="Elivar Largo";
         mesPago="Enero";
         fechaMaximaPago= LocalDateTime.parse("2022-03-28T15:00:00.104");
-        valor=10.0;
+        valor=120.0;
         estado=false;
         fechaCreacion=LocalDateTime.now();
     }
