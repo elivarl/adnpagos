@@ -12,7 +12,6 @@ public class ComandoServicioElectricoTestDataBuilder {
     private String mesPago;
     private LocalDateTime fechaMaximaPago;
     private Double valor;
-    private boolean estado;
     private LocalDateTime fechaCreacion;
 
     public ComandoServicioElectricoTestDataBuilder(){
@@ -23,7 +22,6 @@ public class ComandoServicioElectricoTestDataBuilder {
         mesPago="Enero";
         fechaMaximaPago= LocalDateTime.parse("2022-03-28T15:00:00.104");
         valor=120.0;
-        estado=false;
         fechaCreacion=LocalDateTime.now();
     }
 
@@ -56,10 +54,7 @@ public class ComandoServicioElectricoTestDataBuilder {
         return this;
     }
 
-    public ComandoServicioElectricoTestDataBuilder conEstado(Boolean  estado){
-        this.estado=estado;
-        return this;
-    }
+
     public ComandoServicioElectricoTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion){
         this.fechaCreacion=fechaCreacion;
         return this;
@@ -71,6 +66,6 @@ public class ComandoServicioElectricoTestDataBuilder {
     }
 
     public ComandoServicioElectrico build(){
-        return new ComandoServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado,fechaCreacion);
+        return new ComandoServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor,fechaCreacion);
     }
 }

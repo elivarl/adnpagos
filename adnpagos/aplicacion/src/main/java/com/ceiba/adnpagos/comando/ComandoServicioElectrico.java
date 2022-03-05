@@ -2,11 +2,10 @@ package com.ceiba.adnpagos.comando;
 
 import java.time.LocalDateTime;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComandoServicioElectrico {	
@@ -17,7 +16,6 @@ public class ComandoServicioElectrico {
 	private String mesPago;
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
-	private boolean estado;
 	private LocalDateTime fechaCreacion;
 	
 

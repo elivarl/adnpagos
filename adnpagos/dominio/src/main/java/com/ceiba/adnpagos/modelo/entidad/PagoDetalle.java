@@ -11,8 +11,6 @@ public class PagoDetalle {
 	private  final String OBLIGATORIO_ID_SERVICIO="Se debe ingresar el ID del servicio par el detalle del pago";
 	private  final String OBLIGATORIO_ID_PAGO="Se debe ingresar el ID del pago para el detalle";
 
-	private final String VALIDAR_POSITIVO="Se debe ingresar un valor positivo";
-
 	private Long id;
 	private String descripcion;
 	private Double valor;
@@ -25,11 +23,14 @@ public class PagoDetalle {
 		validarObligatorio(idServicio, OBLIGATORIO_ID_SERVICIO);
 		validarObligatorio(idPago, OBLIGATORIO_ID_PAGO);
 
-		validarPositivo(valor, VALIDAR_POSITIVO);
 		this.id = id;
 		this.descripcion = descripcion;
 		this.valor = valor;
 		this.idServicio = idServicio;
+		this.idPago = idPago;
+	}
+
+	public void setIdPago(Long idPago) {
 		this.idPago = idPago;
 	}
 }

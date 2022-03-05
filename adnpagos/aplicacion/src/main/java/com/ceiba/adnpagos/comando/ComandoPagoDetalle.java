@@ -1,11 +1,12 @@
 package com.ceiba.adnpagos.comando;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class ComandoPagoDetalle {
 	private Long idServicio;
 

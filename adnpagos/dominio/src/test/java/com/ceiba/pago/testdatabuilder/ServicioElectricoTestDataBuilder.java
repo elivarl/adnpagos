@@ -1,4 +1,4 @@
-package com.ceiba.servicioelectrico.testdatabuilder;
+package com.ceiba.pago.testdatabuilder;
 
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 
@@ -9,7 +9,7 @@ public class ServicioElectricoTestDataBuilder {
     private String numeroServicio;
     private String identificacionCliente;
     private String nombreCliente;
-    private String mes;
+    private String mesPago;
     private LocalDateTime fechaMaximaPago;
     private Double valor;
     private LocalDateTime fechaCreacion;
@@ -19,10 +19,10 @@ public class ServicioElectricoTestDataBuilder {
         numeroServicio="12345";
         identificacionCliente="1717213183";
         nombreCliente="Elivar Largo";
-        mes="Enero";
+        mesPago="Enero";
         fechaMaximaPago= LocalDateTime.parse("2022-03-28T15:00:00.104");
         valor=10.0;
-        fechaCreacion=LocalDateTime.parse("2022-03-05T15:00:00.104");
+        fechaCreacion=LocalDateTime.now();
     }
 
     public ServicioElectricoTestDataBuilder conNumeroServicio(String  numeroServicio){
@@ -39,8 +39,8 @@ public class ServicioElectricoTestDataBuilder {
         this.nombreCliente=nombreCliente;
         return this;
     }
-    public ServicioElectricoTestDataBuilder conMes(String  mes){
-        this.mes=mes;
+    public ServicioElectricoTestDataBuilder conMesPago(String  mesPago){
+        this.mesPago=mesPago;
         return this;
     }
 
@@ -65,7 +65,7 @@ public class ServicioElectricoTestDataBuilder {
     }
 
     public ServicioElectrico build(){
-        return new ServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mes, fechaMaximaPago, valor,fechaCreacion);
+        return new ServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor,fechaCreacion);
     }
 
 }

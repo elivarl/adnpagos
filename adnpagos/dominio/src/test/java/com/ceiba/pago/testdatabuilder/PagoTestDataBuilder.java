@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 
 public class PagoTestDataBuilder {
 	private Long id;
@@ -15,7 +16,7 @@ public class PagoTestDataBuilder {
 	private String porcentajeDescuento;
 	private Double valorDescuento;
 	private Double total;
-	private List<PagoDetalle> pagosDetalle;
+	private List<ServicioElectrico> pagoServicios;
 	
 	public PagoTestDataBuilder() {
 		fechaPago= LocalDateTime.now();	
@@ -61,13 +62,13 @@ public class PagoTestDataBuilder {
 		return this;
 	}
 	
-	public PagoTestDataBuilder conPagoDetalles(List<PagoDetalle> pagosDetalle) {
-		this.pagosDetalle=pagosDetalle;
+	public PagoTestDataBuilder conPagoServicios(List<ServicioElectrico> pagoServicios) {
+		this.pagoServicios=pagoServicios;
 		return this;
 	}
 	
 	public Pago build() {
-		return new Pago(id, fechaPago, identificacionCliente, subTotal, porcentajeDescuento, valorDescuento, total, pagosDetalle);
+		return new Pago(id, fechaPago, identificacionCliente, subTotal, porcentajeDescuento, valorDescuento, total, pagoServicios);
 	}
 
 }

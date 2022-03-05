@@ -7,6 +7,6 @@ import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 
 public interface DaoServicioElectrico {
 	public List<DtoServicioElectrico> listar();
-	public List<ServicioElectrico> listarServicio();
+	public DtoServicioElectrico obtenerPorId(Long id);
 
 }

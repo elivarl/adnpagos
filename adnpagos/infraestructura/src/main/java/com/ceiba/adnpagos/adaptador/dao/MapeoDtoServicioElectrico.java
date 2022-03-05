@@ -1,15 +1,15 @@
 package com.ceiba.adnpagos.adaptador.dao;
 
+import com.ceiba.adnpagos.modelo.dto.DtoServicioElectrico;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
+import com.ceiba.infraestructura.jdbc.MapperResult;
+import org.springframework.jdbc.core.RowMapper;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
-import org.springframework.jdbc.core.RowMapper;
-
-import com.ceiba.adnpagos.modelo.dto.*;
-import com.ceiba.infraestructura.jdbc.MapperResult;
-
-public class MapeoDtoServicioElectrico implements RowMapper<DtoServicioElectrico>, MapperResult {
+public class MapeoDtoServicioElectrico implements RowMapper<DtoServicioElectrico> {
 
 	@Override
 	public DtoServicioElectrico mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -18,10 +18,10 @@ public class MapeoDtoServicioElectrico implements RowMapper<DtoServicioElectrico
 		String identificacionCliente= rs.getString("identificacion_cliente");
 		String nombreCliente=rs.getString("nombre_cliente");
 		String mesPago= rs.getString("mes_pago");
-		LocalDateTime fechaMaximaPago= extraerLocalDateTime(rs,"fecha_maxima_pago");
+		LocalDateTime fechaMaximaPago= rs.getTimestamp("fecha_maxima_pago").toLocalDateTime();
 		Double valor= rs.getDouble("valor");
 		boolean estado=rs.getBoolean("estado");
-		LocalDateTime fechaCreacion= extraerLocalDateTime(rs, "fecha_creacion");
+		LocalDateTime fechaCreacion= rs.getTimestamp( "fecha_creacion").toLocalDateTime();
 		
 		return new DtoServicioElectrico(id, numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado, fechaCreacion);
 	}
