@@ -31,7 +31,7 @@ public class Pago {
 	private static final long MAYOR_A_1_DIA=1;
 	private static final long MENOR_A_3_DIA=3;
 	private static final long PORCENTAJE_DESCUENTO_1_A_3_DIAS=0;
-	private static final long PORCENTAJE_RECARGO_PAGO_MAYOR_FECHA_PAGO=0;
+	private static final long PORCENTAJE_RECARGO_PAGO_MAYOR_FECHA_PAGO=10;
 	private static final long DIAS_ENTRE_FECHAS=0;
 	private static final int INDICE_SERVICIO=0;
 
