@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
 public class DtoServicioElectrico {
 	private Long id;
 	private String numeroServicio;
@@ -18,4 +17,15 @@ public class DtoServicioElectrico {
 	private boolean estado;
 	private LocalDateTime fechaCreacion;
 
+	public DtoServicioElectrico(Long id, String numeroServicio, String identificacionCliente, String nombreCliente, String mesPago, LocalDateTime fechaMaximaPago, Double valor, boolean estado, LocalDateTime fechaCreacion) {
+		this.id = id;
+		this.numeroServicio = numeroServicio;
+		this.identificacionCliente = identificacionCliente;
+		this.nombreCliente = nombreCliente;
+		this.mesPago = mesPago;
+		this.fechaMaximaPago = fechaMaximaPago;
+		this.valor = valor;
+		this.estado = estado;
+		this.fechaCreacion = fechaCreacion;
+	}
 }

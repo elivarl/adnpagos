@@ -9,7 +9,7 @@ import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 public class FabricaServicioElectrico {
 	
 	public ServicioElectrico crear(ComandoServicioElectrico comandoServicioElectrico) {
-		return new ServicioElectrico( comandoServicioElectrico.getId(),comandoServicioElectrico.getNumeroServicio(), comandoServicioElectrico.getIdentificacionCliente(),comandoServicioElectrico.getNombreCliente() ,comandoServicioElectrico.getMesPago(), comandoServicioElectrico.getFechaMaximaPago(),comandoServicioElectrico.getValor() ,comandoServicioElectrico.getFechaCreacion());
+		return new ServicioElectrico( comandoServicioElectrico.getId(),comandoServicioElectrico.getNumeroServicio(), comandoServicioElectrico.getIdentificacionCliente(),comandoServicioElectrico.getNombreCliente() ,comandoServicioElectrico.getMes(), comandoServicioElectrico.getFechaMaximaPago(),comandoServicioElectrico.getValor() ,comandoServicioElectrico.getFechaCreacion());
 	}
 
 }

@@ -3,6 +3,8 @@ package com.ceiba.adnpagos.comando.fabrica;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.comando.ComandoPago;
@@ -15,17 +17,17 @@ public class FabricaPago {
 	
 		
 	public Pago crear (ComandoPago comandoPago) {
-		return new Pago(comandoPago.getId(), comandoPago.getFechaPago(), comandoPago.getIdentificacionCliente(),0.0,"", 0.0, 0.0, null);
+		return new Pago(comandoPago.getId(), comandoPago.getFechaPago(), comandoPago.getIdentificacionCliente(), comandoPago.getSubTotal(), comandoPago.getTotal(),convertirAServicioElectrico(comandoPago.getComandoServicioElectricos()));
 	}
-	
-	private List<PagoDetalle> crearListaPagoDetalle(List<ComandoPagoDetalle> listaComandoPagoDetalle){
+
+	private List<ServicioElectrico> convertirAServicioElectrico(List<ComandoServicioElectrico> comandoServicioElectricos){
+
+		ArrayList<ServicioElectrico> servicioElectricos= new ArrayList<>();
 		
-		List<PagoDetalle> pagosDetalle = new ArrayList<PagoDetalle>();
-		
-		for (ComandoPagoDetalle comandoPagoDetalle : listaComandoPagoDetalle) {
-			pagosDetalle.add(new PagoDetalle(null, null, null,comandoPagoDetalle.getIdServicio(), null));
+		for (ComandoServicioElectrico comandoServicioElectrico : comandoServicioElectricos) {
+			servicioElectricos.add(new ServicioElectrico(comandoServicioElectrico.getId(), comandoServicioElectrico.getNumeroServicio(), comandoServicioElectrico.getIdentificacionCliente(), comandoServicioElectrico.getNombreCliente(), comandoServicioElectrico.getMes(), comandoServicioElectrico.getFechaMaximaPago(), comandoServicioElectrico.getValor(), comandoServicioElectrico.getFechaCreacion()));
 		}
-		return pagosDetalle;
+		return servicioElectricos;
 	}
 
 }

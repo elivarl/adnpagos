@@ -1,24 +1,7 @@
 package com.ceiba.pago.servicio;
 
-import com.ceiba.adnpagos.modelo.entidad.Pago;
-import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
-import com.ceiba.adnpagos.modelo.entidad.Usuario;
-import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
-import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
-import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
-import com.ceiba.adnpagos.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.pago.testdatabuilder.PagoDetalleTestDataBuilder;
-import com.ceiba.pago.testdatabuilder.PagoTestDataBuilder;
-import com.ceiba.usuario.servicio.ServicioCrearPago;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

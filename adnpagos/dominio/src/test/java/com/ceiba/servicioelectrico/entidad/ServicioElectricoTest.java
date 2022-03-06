@@ -41,6 +41,7 @@ public class ServicioElectricoTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin numero de servicio")
     void deberiaFallarSinNumeroDeServicio() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conNumeroServicio(null).conId(1L);
@@ -51,6 +52,7 @@ public class ServicioElectricoTest {
                 ExcepcionValorObligatorio.class, "Se debe ingresar el número de servicio");
     }
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin identificacion del cliente")
     void deberiaFallarSinIdentificacionDelCliente() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conIdentificacionCliente(null);
@@ -62,6 +64,7 @@ public class ServicioElectricoTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin nombre del cliente")
     void deberiaFallarSinNombreDelCliente() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conNombreCliente(null);
@@ -73,6 +76,7 @@ public class ServicioElectricoTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin mes de pago")
     void deberiaFallarSinMes() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conMes(null);
@@ -83,6 +87,7 @@ public class ServicioElectricoTest {
                 ExcepcionValorObligatorio.class, "Se debe ingresar el mes correspondiente al servicio");
     }
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin fecha máxima de pago")
     void deberiaFallarSinFechaMaximaPago() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conFechaMaximaPago(null);
@@ -94,6 +99,7 @@ public class ServicioElectricoTest {
     }
 
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin valor")
     void deberiaFallarSinValor() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conValor(null);
@@ -104,6 +110,7 @@ public class ServicioElectricoTest {
                 ExcepcionValorObligatorio.class, "Se debe ingresar el valor del servicio");
     }
     @Test
+    @DisplayName("Deberia fallar al crear un servicio electrico sin fecha de creacion")
     void deberiaFallarSinFechaCreacion() {
         //Arrange
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conFechaCreacion(null);

@@ -6,10 +6,10 @@ import lombok.Getter;
 
 @Getter
 public class PagoDetalle {
-	private  final String OBLIGATORIO_DESCRIPCION="Se debe ingresar la descripcion para el mes de pago";
-	private  final String OBLIGATORIO_VALOR="Se debe ingresar el valor del pago para el mes de servicio";
-	private  final String OBLIGATORIO_ID_SERVICIO="Se debe ingresar el ID del servicio par el detalle del pago";
-	private  final String OBLIGATORIO_ID_PAGO="Se debe ingresar el ID del pago para el detalle";
+	private static  final String OBLIGATORIO_DESCRIPCION="Se debe ingresar la descripcion para el mes de pago";
+	private static  final String OBLIGATORIO_VALOR="Se debe ingresar el valor del pago para el mes de servicio";
+	private static  final String OBLIGATORIO_ID_SERVICIO="Se debe ingresar el ID del servicio par el detalle del pago";
+	private static  final String OBLIGATORIO_ID_PAGO="Se debe ingresar el ID del pago para el detalle";
 
 	private Long id;
 	private String descripcion;

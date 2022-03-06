@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
-import com.ceiba.adnpagos.puerto.dao.ReglaPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
 import com.ceiba.usuario.servicio.ServicioCrearPago;

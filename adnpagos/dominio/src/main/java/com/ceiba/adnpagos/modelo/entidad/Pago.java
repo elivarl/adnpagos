@@ -10,13 +10,13 @@ import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 @Getter
 public class Pago {
-	private static final String OBLIGATORIO_FECHA_PAGO="Se debe ingresar el número de servicio";
+	private static final String OBLIGATORIO_FECHA_PAGO="Se debe ingresar la fecha de pago";
 	private  static final String OBLIGATORIO_IDENTIFICACION_CLIENTE="Se debe ingresar la identificación del cliente";
 	private  static final String OBLIGATORIO_SUBTOTAL="Se debe ingresar el subtotal";
-	private  static final String OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO="Se debe ingresar el porcentanje descuento/recargo";
-	private  static final String OBLIGATORIO_VALOR_DESCUENTO_RECARGO="Se debe ingresar el valor descuento/recargo";
+	//private  static final String OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO="Se debe ingresar el porcentanje descuento/recargo";
+	//private  static final String OBLIGATORIO_VALOR_DESCUENTO_RECARGO="Se debe ingresar el valor descuento/recargo";
 	private  static final String OBLIGATORIO_TOTAL="Se debe ingresar el valor total";
-	private  static final String OBLIGATORIO_PAGOS_DETALLE="Se debe ingresar el detalle de pagos";
+	private  static final String OBLIGATORIO_PAGOS_DETALLE="Se debe ingresar el detalle de los servicios a pagar";
 
 
 	private static final long SUMAR_UN_DIA=1;
@@ -46,13 +46,13 @@ public class Pago {
 	private List<ServicioElectrico> pagoServicios;
 
 
-	public Pago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double subTotal, String porcentajeDescuentoRecargo, Double valorDescuentoRecargo, Double total, List<ServicioElectrico> pagoServicios) {
+	public Pago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double subTotal, Double total, List<ServicioElectrico> pagoServicios) {
 
 		validarObligatorio(fechaPago,OBLIGATORIO_FECHA_PAGO);
 		validarObligatorio(identificacionCliente,OBLIGATORIO_IDENTIFICACION_CLIENTE);
 		validarObligatorio(subTotal,OBLIGATORIO_SUBTOTAL);
-		validarObligatorio(porcentajeDescuentoRecargo,OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO);
-		validarObligatorio(valorDescuentoRecargo,OBLIGATORIO_VALOR_DESCUENTO_RECARGO);
+		//validarObligatorio(porcentajeDescuentoRecargo,OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO);
+		//validarObligatorio(valorDescuentoRecargo,OBLIGATORIO_VALOR_DESCUENTO_RECARGO);
 		validarObligatorio(total,OBLIGATORIO_TOTAL);
 		validarObligatorio(pagoServicios,OBLIGATORIO_PAGOS_DETALLE);
 
@@ -60,20 +60,19 @@ public class Pago {
 		this.fechaPago = fechaPago;
 		this.identificacionCliente = identificacionCliente;
 		this.subTotal = subTotal;
-		this.porcentajeDescuentoRecargo = porcentajeDescuentoRecargo;
-		this.valorDescuentoRecargo = valorDescuentoRecargo;
+		this.porcentajeDescuentoRecargo=POR_DEFECTO_PORCENTAJE_DESCUENTO_RECARGO;
+		this.valorDescuentoRecargo=POR_DEFECTO_VALOR_DESCUENTO_RECARGO;
 		this.total = total;
 		this.pagoServicios = pagoServicios;
+	}
 
-
-		setSubTotalPago();
-		aplicarReglasPago();
+	public void setReglapFechaPagoLaboral(){
 		setFechaLaboralPagoCuandoEsFinDeSemana();
 	}
-
-	private void setSubTotalPago() {
-		this.subTotal=this.pagoServicios.stream().mapToDouble(d -> d.getValor()).sum();
+	public void setAplicarReglaPorcentajeDescuentoRecargo(){
+		realizarReglasPago();
 	}
+
 
 	private void setFechaLaboralPagoCuandoEsFinDeSemana() {
 		if (this.fechaPago.getDayOfWeek().name().equals(NoLaboral.SATURDAY.toString())
@@ -87,7 +86,7 @@ public class Pago {
 		}
 	}
 
-	private void aplicarReglasPago() {
+	private void realizarReglasPago() {
 		if (this.getPagoServicios().size() ==NUMERO_MAXIMO_DETALLES_APLICA_DESCUENTO_RECARGO) {
 			long dias = calcularDias(this.fechaPago,getPagoServicios().get(INDICE_SERVICIO).getFechaMaximaPago());
 			long porcentajeDescuentoRecargo = obtenerPorcentajeDescuento(dias);
@@ -96,10 +95,6 @@ public class Pago {
 			this.valorDescuentoRecargo=valorDescuentoRecargo;
 			this.porcentajeDescuentoRecargo=String.valueOf(porcentajeDescuentoRecargo);
 			this.total=totalPago;
-		}else{
-			this.porcentajeDescuentoRecargo=POR_DEFECTO_PORCENTAJE_DESCUENTO_RECARGO;
-			this.valorDescuentoRecargo=POR_DEFECTO_VALOR_DESCUENTO_RECARGO;
-			this.total=this.subTotal;
 		}
 	}
 

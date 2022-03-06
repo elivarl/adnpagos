@@ -13,17 +13,14 @@ public class PagoTestDataBuilder {
 	private LocalDateTime fechaPago;
 	private String identificacionCliente;
 	private Double subTotal;
-	private String porcentajeDescuento;
-	private Double valorDescuento;
 	private Double total;
-	private List<ServicioElectrico> pagoServicios;
+	private List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders;
 	
 	public PagoTestDataBuilder() {
-		fechaPago= LocalDateTime.now();	
+		id=1L;
+		fechaPago= LocalDateTime.parse("2022-03-28T15:00:00.104");
 		identificacionCliente="1717213183";
 		subTotal=0.0;
-		porcentajeDescuento="";
-		valorDescuento=0.0;
 		total=0.0;
 	}
 	
@@ -46,29 +43,29 @@ public class PagoTestDataBuilder {
 		this.subTotal=subTotal;
 		return this;
 	}
-	
-	public PagoTestDataBuilder conPorcentajeDescuento(String porcentajeDescuento) {
-		this.porcentajeDescuento=porcentajeDescuento;
-		return this;
-	}
-	
-	public PagoTestDataBuilder conValorDescuento(Double valorDescuento) {
-		this.valorDescuento=valorDescuento;
-		return this;
-	}
-	
 	public PagoTestDataBuilder conTotal(Double total) {
 		this.total=total;
 		return this;
 	}
 	
-	public PagoTestDataBuilder conPagoServicios(List<ServicioElectrico> pagoServicios) {
-		this.pagoServicios=pagoServicios;
+	public PagoTestDataBuilder conServicioElectricoTestDataBuilders(List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders) {
+		this.servicioElectricoTestDataBuilders=servicioElectricoTestDataBuilders;
 		return this;
 	}
 	
 	public Pago build() {
-		return new Pago(id, fechaPago, identificacionCliente, subTotal, porcentajeDescuento, valorDescuento, total, pagoServicios);
+		return new Pago(id, fechaPago, identificacionCliente, subTotal, total, convertirAServicioElectrico(servicioElectricoTestDataBuilders));
+	}
+
+	private List<ServicioElectrico>  convertirAServicioElectrico(List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders){
+		if(servicioElectricoTestDataBuilders!=null){
+			ArrayList<ServicioElectrico> servicioElectricos= new ArrayList<>();
+			for (ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder: servicioElectricoTestDataBuilders) {
+				servicioElectricos.add(servicioElectricoTestDataBuilder.build());
+			}
+			return  servicioElectricos;
+		}
+		return null;
 	}
 
 }

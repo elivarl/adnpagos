@@ -2,15 +2,15 @@ package com.ceiba.adnpagos.adaptador.dao;
 
 import java.util.List;
 
+import com.ceiba.adnpagos.puerto.dao.DaoPago;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.modelo.dto.DtoPago;
-import com.ceiba.adnpagos.puerto.dao.DaoPagos;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
 
 @Component
-public class DaoPagoMySQL implements DaoPagos {
+public class DaoPagoMySQL implements DaoPago {
 	
 	private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 	

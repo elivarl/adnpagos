@@ -13,7 +13,7 @@ public class ComandoServicioElectrico {
 	private String numeroServicio;
 	private String identificacionCliente;
 	private String nombreCliente;
-	private String mesPago;
+	private String mes;
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
 	private LocalDateTime fechaCreacion;
