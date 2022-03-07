@@ -8,9 +8,7 @@ import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.comando.ComandoPago;
-import com.ceiba.adnpagos.comando.ComandoPagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.Pago;
-import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 
 @Component
 public class FabricaPago {

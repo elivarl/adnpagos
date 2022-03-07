@@ -15,9 +15,8 @@ public class DtoServicioElectrico {
 	private LocalDateTime fechaMaximaPago;
 	private Double valor;
 	private boolean estado;
-	private LocalDateTime fechaCreacion;
 
-	public DtoServicioElectrico(Long id, String numeroServicio, String identificacionCliente, String nombreCliente, String mesPago, LocalDateTime fechaMaximaPago, Double valor, boolean estado, LocalDateTime fechaCreacion) {
+	public DtoServicioElectrico(Long id, String numeroServicio, String identificacionCliente, String nombreCliente, String mesPago, LocalDateTime fechaMaximaPago, Double valor, boolean estado) {
 		this.id = id;
 		this.numeroServicio = numeroServicio;
 		this.identificacionCliente = identificacionCliente;
@@ -26,6 +25,5 @@ public class DtoServicioElectrico {
 		this.fechaMaximaPago = fechaMaximaPago;
 		this.valor = valor;
 		this.estado = estado;
-		this.fechaCreacion = fechaCreacion;
 	}
 }

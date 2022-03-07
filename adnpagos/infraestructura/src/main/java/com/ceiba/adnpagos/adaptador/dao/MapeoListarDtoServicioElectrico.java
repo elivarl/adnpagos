@@ -21,9 +21,8 @@ public class MapeoListarDtoServicioElectrico implements RowMapper<DtoServicioEle
 		LocalDateTime fechaMaximaPago= extraerLocalDateTime(rs,"fecha_maxima_pago");
 		Double valor= rs.getDouble("valor");
 		boolean estado=rs.getBoolean("estado");
-		LocalDateTime fechaCreacion= extraerLocalDateTime(rs, "fecha_creacion");
 		
-		return new DtoServicioElectrico(id, numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado, fechaCreacion);
+		return new DtoServicioElectrico(id, numeroServicio, identificacionCliente, nombreCliente, mesPago, fechaMaximaPago, valor, estado);
 	}
 
 }

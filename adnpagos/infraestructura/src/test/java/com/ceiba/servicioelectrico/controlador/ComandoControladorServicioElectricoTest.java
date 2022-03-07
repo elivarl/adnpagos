@@ -3,10 +3,8 @@ package com.ceiba.servicioelectrico.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
-import com.ceiba.adnpagos.comando.ComandoUsuario;
-import com.ceiba.adnpagos.controlador.ComandoControladorUsuario;
+import com.ceiba.adnpagos.controlador.ComandoControladorServicioElectrico;
 import com.ceiba.servicioelectrico.servicio.testdatabuilder.ComandoServicioElectricoTestDataBuilder;
-import com.ceiba.usuario.servicio.testdatabuilder.ComandoUsuarioTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -24,7 +22,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorServicioElectrico.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class ComandoControladorServicioElectricoTest {
@@ -38,7 +36,7 @@ public class ComandoControladorServicioElectricoTest {
     @DisplayName("Deberia crear un servicio Electrico")
     void deberiaCrearUnServicioElectrico() throws Exception{
         // arrange
-        ComandoServicioElectrico servicioElectrico = new ComandoServicioElectricoTestDataBuilder().build();
+        ComandoServicioElectrico servicioElectrico = new ComandoServicioElectricoTestDataBuilder().conId(4L).build();
         // act - assert
         mocMvc.perform(post("/servicios")
                 .contentType(MediaType.APPLICATION_JSON)

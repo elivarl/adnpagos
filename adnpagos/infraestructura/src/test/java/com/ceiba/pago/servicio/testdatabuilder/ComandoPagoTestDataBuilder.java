@@ -1,15 +1,12 @@
 package com.ceiba.pago.servicio.testdatabuilder;
 
 import com.ceiba.adnpagos.comando.ComandoPago;
-import com.ceiba.adnpagos.comando.ComandoPagoDetalle;
 import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
-import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.servicioelectrico.servicio.testdatabuilder.ComandoServicioElectricoTestDataBuilder;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class ComandoPagoTestDataBuilder {
     private Long id;
@@ -20,7 +17,7 @@ public class ComandoPagoTestDataBuilder {
     private List<ComandoServicioElectricoTestDataBuilder> comandoServicioElectricoTestDataBuilders;
 
     public ComandoPagoTestDataBuilder(){
-        id=0L;
+        id=2L;
         fechaPago=LocalDateTime.now();
         subTotal=0.0;
         total=0.0;

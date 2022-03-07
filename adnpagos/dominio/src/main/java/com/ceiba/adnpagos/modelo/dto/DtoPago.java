@@ -31,11 +31,11 @@ public class DtoPago {
         this.dtoServiciosPago = convertirServicioElectricoADtoservicioElectrico(servicioElectricos);
     }
 
-    public List<DtoServicioElectrico> convertirServicioElectricoADtoservicioElectrico(List<ServicioElectrico> servicioElectricos) {
+    private List<DtoServicioElectrico> convertirServicioElectricoADtoservicioElectrico(List<ServicioElectrico> servicioElectricos) {
         this.dtoServiciosPago =new ArrayList<>();
         for (ServicioElectrico servicioElectrico : servicioElectricos
         ) {
-            this.dtoServiciosPago.add(new DtoServicioElectrico(servicioElectrico.getId(), servicioElectrico.getNumeroServicio(),servicioElectrico.getIdentificacionCliente(), servicioElectrico.getNombreCliente(), servicioElectrico.getMes(), servicioElectrico.getFechaMaximaPago(), servicioElectrico.getValor(), servicioElectrico.isEstado(),servicioElectrico.getFechaCreacion()));
+            this.dtoServiciosPago.add(new DtoServicioElectrico(servicioElectrico.getId(), servicioElectrico.getNumeroServicio(),servicioElectrico.getIdentificacionCliente(), servicioElectrico.getNombreCliente(), servicioElectrico.getMes(), servicioElectrico.getFechaMaximaPago(), servicioElectrico.getValor(), servicioElectrico.isEstado()));
         }
         return  this.dtoServiciosPago;
     }

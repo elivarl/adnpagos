@@ -42,7 +42,6 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 
 	@Override
 	public void eliminar(Long id) {
-		// TODO Auto-generated method stub
 		
 	}
 

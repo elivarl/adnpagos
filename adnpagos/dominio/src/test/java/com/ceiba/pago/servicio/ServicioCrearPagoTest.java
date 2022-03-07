@@ -28,10 +28,7 @@ public class ServicioCrearPagoTest {
     @DisplayName("Deberia Crear el pago de manera correcta")
     void deberiaCrearElPagoDeManeraCorrecta() {
         // arrange
-        final long ID = 1L;
-        ServicioElectrico servicioElectrico = new ServicioElectricoTestDataBuilder().build();
-        List<ServicioElectrico> servicioElectricos = new ArrayList<>();
-        servicioElectricos.add(servicioElectrico);
+        final long ID = 2L;
 
         //objetos test data builder
         ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
@@ -45,13 +42,13 @@ public class ServicioCrearPagoTest {
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
         //Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
-        Mockito.when(repositorioPago.crear(pago)).thenReturn(1L);
+        Mockito.when(repositorioPago.crear(pago)).thenReturn(2L);
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         // act
         Long idPago = servicioCrearPago.ejecutar(pago);
         //- assert
-        assertEquals(1L, idPago);
+        assertEquals(2L, idPago);
         Mockito.verify(repositorioPago, Mockito.times(1)).crear(pago);
 
     }
@@ -60,13 +57,13 @@ public class ServicioCrearPagoTest {
     @DisplayName("Deberia Crear el pago detalle de manera correcta")
     void deberiaCrearElPagoDetalleDeManeraCorrecta() {
         // arrange
-        final long ID = 1L;
+        final long ID = 2L;
 
         PagoDetalle pagoDetalle = new PagoDetalleTestDataBuilder().build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
         //Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
-        Mockito.when(repositorioPago.crearPagoDetalle(pagoDetalle)).thenReturn(1L);
+        Mockito.when(repositorioPago.crearPagoDetalle(pagoDetalle)).thenReturn(2L);
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         // act
@@ -82,14 +79,22 @@ public class ServicioCrearPagoTest {
     @DisplayName("Deberia actualizar correctamente en el repositorio")
     void deberiaActualizarElServicioCorrectamenteEnElRepositorio() {
         // arrange
-        ServicioElectrico servicioElectrico = new com.ceiba.servicioelectrico.testdatabuilder.ServicioElectricoTestDataBuilder().conId(1L).build();
+        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
+        List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders = new ArrayList<>();
+        servicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
+
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+        Pago pago = new PagoTestDataBuilder().conServicioElectricoTestDataBuilders(servicioElectricoTestDataBuilders).build();
+        pago.setPagoDetalles();
+        pago.setEstadoServicio();
+
+
 
         Mockito.when(repositorioPago.existePorId(Mockito.anyLong())).thenReturn(true);
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
         // act
-        servicioCrearPago.actualizarServicioElectrico(servicioElectrico);
+        servicioCrearPago.actualizarServicioElectrico(pago.getPagoServicios().get(0));
         //assert
-        Mockito.verify(repositorioPago, Mockito.times(1)).actualizarServivioElectrico (servicioElectrico);
+        Mockito.verify(repositorioPago, Mockito.times(1)).actualizarServivioElectrico (pago.getPagoServicios().get(0));
     }
 }

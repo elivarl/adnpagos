@@ -14,8 +14,8 @@ public class Pago {
     private static final String OBLIGATORIO_FECHA_PAGO = "Se debe ingresar la fecha de pago";
     private static final String OBLIGATORIO_IDENTIFICACION_CLIENTE = "Se debe ingresar la identificación del cliente";
     private static final String OBLIGATORIO_SUBTOTAL = "Se debe ingresar el subtotal";
-    //private  static final String OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO="Se debe ingresar el porcentanje descuento/recargo";
-    //private  static final String OBLIGATORIO_VALOR_DESCUENTO_RECARGO="Se debe ingresar el valor descuento/recargo";
+    private static final String DIA_NO_LABORAL_SABADO = "SATURDAY";
+    private  static final String DIA_NO_LABORAL_DOMINGO="SUNDAY";
     private static final String OBLIGATORIO_TOTAL = "Se debe ingresar el valor total";
     private static final String OBLIGATORIO_PAGOS_DETALLE = "Se debe ingresar el detalle de los servicios a pagar";
 
@@ -53,8 +53,6 @@ public class Pago {
         validarObligatorio(fechaPago, OBLIGATORIO_FECHA_PAGO);
         validarObligatorio(identificacionCliente, OBLIGATORIO_IDENTIFICACION_CLIENTE);
         validarObligatorio(subTotal, OBLIGATORIO_SUBTOTAL);
-        //validarObligatorio(porcentajeDescuentoRecargo,OBLIGATORIO_PORCENTAJE_DESCUENTO_RECARGO);
-        //validarObligatorio(valorDescuentoRecargo,OBLIGATORIO_VALOR_DESCUENTO_RECARGO);
         validarObligatorio(total, OBLIGATORIO_TOTAL);
         validarObligatorio(pagoServicios, OBLIGATORIO_PAGOS_DETALLE);
 
@@ -66,7 +64,7 @@ public class Pago {
         this.valorDescuentoRecargo = POR_DEFECTO_VALOR_DESCUENTO_RECARGO;
         this.total = total;
         this.pagoServicios = pagoServicios;
-        this.pagoDetalles= new ArrayList<>();
+        this.pagoDetalles = new ArrayList<>();
     }
 
     public void setReglapFechaPagoLaboral() {
@@ -93,12 +91,12 @@ public class Pago {
     private void realizarReglasPago() {
         if (this.getPagoServicios().size() == NUMERO_MAXIMO_DETALLES_APLICA_DESCUENTO_RECARGO) {
             long dias = calcularDias(this.fechaPago, getPagoServicios().get(INDICE_SERVICIO).getFechaMaximaPago());
-            long porcentajeDescuentoRecargo = obtenerPorcentajeDescuento(dias);
-            double valorDescuentoRecargo = calcularValorDescuentoRecargo(this.getSubTotal(), porcentajeDescuentoRecargo);
-            double totalPago = calcularTotalPago(this.getSubTotal(), porcentajeDescuentoRecargo, dias);
-            this.valorDescuentoRecargo = valorDescuentoRecargo;
-            this.porcentajeDescuentoRecargo = String.valueOf(porcentajeDescuentoRecargo);
-            this.total = totalPago;
+            //long porcentajeDescuentoRecargo = obtenerPorcentajeDescuentoRecargo(dias);
+            this.porcentajeDescuentoRecargo=String.valueOf(obtenerPorcentajeDescuentoRecargo(dias));
+            this.valorDescuentoRecargo   = calcularValorDescuentoRecargo(this.getSubTotal(), Long.parseLong(this.porcentajeDescuentoRecargo));
+
+            //this.porcentajeDescuentoRecargo = String.valueOf(porcentajeDescuentoRecargo);
+            this.total = calcularTotalPago(this.getSubTotal(), this.valorDescuentoRecargo , dias);;
         }
     }
 
@@ -108,8 +106,8 @@ public class Pago {
         long diasLaborales = DIAS_LABORASLES_INICIALIZACION;
         for (int i = 1; i <= totalDias.toDays(); i++) {
             String dia = fechaInicial.plusDays(i).getDayOfWeek().name();
-            if (!dia.equals("SATURDAY")) {
-                if (!dia.equals("SUNDAY")) {
+            if (!dia.equals(DIA_NO_LABORAL_SABADO)) {
+                if (!dia.equals(DIA_NO_LABORAL_DOMINGO)) {
                     diasLaborales++;
                 }
             }
@@ -122,7 +120,7 @@ public class Pago {
         return (subtotal * porcentajeDescuento) / VALOR_CIEN;
     }
 
-    private long obtenerPorcentajeDescuento(long dias) {
+    private long obtenerPorcentajeDescuentoRecargo(long dias) {
         if (dias > MAYOR_A_3_DIAS) {
             return PORCENTAJE_DESCUENTO_MAYOR_A_3_DIAS;
         } else if (dias <= MENOR_A_3_DIA && dias >= MAYOR_A_1_DIA) {
@@ -131,11 +129,11 @@ public class Pago {
         return PORCENTAJE_RECARGO_PAGO_MAYOR_FECHA_PAGO;
     }
 
-    private double calcularTotalPago(Double subtotal, long porcentajeDescuento, long dias) {
+    private double calcularTotalPago(Double subtotal, Double valorDescuentoRecargo, long dias) {
         if (dias > DIAS_ENTRE_FECHAS) {
-            return subtotal - ((subtotal * porcentajeDescuento) / VALOR_CIEN);
+            return subtotal - valorDescuentoRecargo;
         }
-        return subtotal + ((subtotal * porcentajeDescuento) / VALOR_CIEN);
+        return subtotal + valorDescuentoRecargo;
     }
 
     public void setPagoDetalles() {
@@ -146,7 +144,7 @@ public class Pago {
     }
 
 
-    public void setEstadoServicio(){
+    public void setEstadoServicio() {
         for (ServicioElectrico servicioElectrico : this.getPagoServicios()
         ) {
             this.pagoServicios.remove(servicioElectrico);

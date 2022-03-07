@@ -1,7 +1,7 @@
 package com.ceiba.servicioelectrico.controlador;
 
 import com.ceiba.ApplicationMock;
-import com.ceiba.adnpagos.controlador.ConsultaControladorUsuario;
+import com.ceiba.adnpagos.controlador.ConsultaControladorServicioElectrico;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ConsultaControladorUsuario.class)
+@WebMvcTest(ConsultaControladorServicioElectrico.class)
 @ContextConfiguration(classes= ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 

@@ -2,14 +2,10 @@ package com.ceiba.servicioelectrico.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
-import com.ceiba.adnpagos.modelo.entidad.Usuario;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
-import com.ceiba.adnpagos.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.servicioelectrico.testdatabuilder.ServicioElectricoTestDataBuilder;
 import com.ceiba.usuario.servicio.ServicioActualizarServicioElectrico;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.testdatabuilder.UsuarioTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

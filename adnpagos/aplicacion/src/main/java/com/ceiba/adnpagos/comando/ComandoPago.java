@@ -9,7 +9,6 @@ import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import lombok.*;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ComandoPago {

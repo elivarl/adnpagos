@@ -19,7 +19,7 @@ public class ServicioCrearServicioElectrico {
 	}
 	
 	private void validarExistenciaPrevia(ServicioElectrico servicioElectrico) {
-		boolean existe = repositorioServicioElectrico.existe(servicioElectrico.getNumeroServicio());
+		boolean existe = repositorioServicioElectrico.existePorId(servicioElectrico.getId());
 		if(existe) {
 			throw new ExcepcionDuplicidad(SERVICIO_YA_EXISTE);
 		}

@@ -15,7 +15,7 @@ public class ComandoServicioElectricoTestDataBuilder {
     private LocalDateTime fechaCreacion;
 
     public ComandoServicioElectricoTestDataBuilder(){
-        id=1L;
+        id=3L;
         numeroServicio="12345";
         identificacionCliente="1717213183";
         nombreCliente="Elivar Largo";

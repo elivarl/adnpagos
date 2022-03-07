@@ -2,11 +2,7 @@ package com.ceiba.pago.controlador;
 
 import com.ceiba.ApplicationMock;
 import com.ceiba.adnpagos.comando.ComandoPago;
-import com.ceiba.adnpagos.comando.ComandoPagoDetalle;
-import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
-import com.ceiba.adnpagos.controlador.ComandoControladorUsuario;
-import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
-import com.ceiba.pago.servicio.testdatabuilder.ComandoPagoDetalleTestDataBuilder;
+import com.ceiba.adnpagos.controlador.ComandoControladorPago;
 import com.ceiba.pago.servicio.testdatabuilder.ComandoPagoTestDataBuilder;
 import com.ceiba.servicioelectrico.servicio.testdatabuilder.ComandoServicioElectricoTestDataBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(ComandoControladorUsuario.class)
+@WebMvcTest(ComandoControladorPago.class)
 @ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
@@ -51,14 +47,13 @@ public class ComandoControladorPagoTest {
         comandoServicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
 
         ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conComandoServicioElectricoTestDataBuilders(comandoServicioElectricoTestDataBuilders).build();
-        ComandoPago cp = new ComandoPago();
 
         // act - assert
         mocMvc.perform(post("/pagos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoPago)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 1}"));
+                .andExpect(content().json("{'valor': 2}"));
     }
 
 
@@ -71,7 +66,6 @@ public class ComandoControladorPagoTest {
         comandoServicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
 
         ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conComandoServicioElectricoTestDataBuilders(comandoServicioElectricoTestDataBuilders).build();
-        ComandoPago cp = new ComandoPago();
 
         // act - assert
         mocMvc.perform(post("/pagos/detalle")
