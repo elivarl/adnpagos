@@ -4,9 +4,7 @@ import java.util.List;
 import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
-import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
-import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
 
 public class ServicioCrearPago {
 

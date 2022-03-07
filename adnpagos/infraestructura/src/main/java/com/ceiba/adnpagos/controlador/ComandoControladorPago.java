@@ -40,7 +40,7 @@ public class ComandoControladorPago {
 		this.aplicarReglasPago=aplicarReglasPago;
 	}
 	
-	@PostMapping("/{id}/detalle")
+	@PostMapping("/detalle")
 	@ApiOperation("Añadir un servicio a un pago")
 	public DtoPago aplicarReglas(@RequestBody ComandoPago comandoPago) {
 		return aplicarReglasPago.aplicarReglasPago(comandoPago);

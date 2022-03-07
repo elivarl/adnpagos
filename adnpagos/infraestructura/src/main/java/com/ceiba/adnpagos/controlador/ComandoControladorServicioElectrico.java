@@ -38,14 +38,12 @@ public class ComandoControladorServicioElectrico {
 	@PostMapping
 	@ApiOperation("Crear servicio electrico")
 	public ComandoRespuesta<Long> crear(@RequestBody ComandoServicioElectrico comandoServicioElectrico){
-		System.out.println("hello: "+comandoServicioElectrico.getIdentificacionCliente());
 		return manejadorCrearServicioElectrico.ejecutar(comandoServicioElectrico);
 	}
 	
 	@PutMapping("/{id}")
 	@ApiOperation("Actualizar un servicio eléctrico")
 	public void actualizar (@RequestBody ComandoServicioElectrico comandoServicioElectrico, @PathVariable Long id) {
-		System.out.println("id..."+id);
 		comandoServicioElectrico.setId(id);
 		this.manejadorActualizarServicioElectrico.ejecutar(comandoServicioElectrico);
 		

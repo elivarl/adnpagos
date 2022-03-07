@@ -7,6 +7,8 @@ public class ServicioAplicarReglaPago {
     public Pago aplicarReglas(Pago pago){
         pago.setReglapFechaPagoLaboral();
         pago.setAplicarReglaPorcentajeDescuentoRecargo();
+        pago.setPagoDetalles();
+        pago.setEstadoServicio();
         return pago;
     }
 }

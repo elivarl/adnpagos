@@ -35,7 +35,7 @@ public class ComandoControladorServicioElectricoTest {
     private MockMvc mocMvc;
 
     @Test
-    @DisplayName("Deberia crear un servicio Eléctrico")
+    @DisplayName("Deberia crear un servicio Electrico")
     void deberiaCrearUnServicioElectrico() throws Exception{
         // arrange
         ComandoServicioElectrico servicioElectrico = new ComandoServicioElectricoTestDataBuilder().build();

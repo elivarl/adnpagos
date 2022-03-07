@@ -24,7 +24,7 @@ public class ComandoPagoTestDataBuilder {
         fechaPago=LocalDateTime.now();
         subTotal=0.0;
         total=0.0;
-        identificacionCliente= UUID.randomUUID().toString();
+        identificacionCliente= "1717213183";
 
     }
 
@@ -52,12 +52,12 @@ public class ComandoPagoTestDataBuilder {
     }
 
     public ComandoPago build(){
-        return new ComandoPago(id, fechaPago,identificacionCliente,subTotal,total, convertirAComandoServicioElectricos(comandoServicioElectricoTestDataBuilders));
+        return new ComandoPago(id, fechaPago,identificacionCliente,subTotal,total, convertirAComandoServicioElectricos(this.comandoServicioElectricoTestDataBuilders));
     }
 
     private List<ComandoServicioElectrico> convertirAComandoServicioElectricos(List<ComandoServicioElectricoTestDataBuilder> comandoServicioElectricoTestDataBuilders){
         List<ComandoServicioElectrico> servicioElectricos = new ArrayList<>();
-        if(comandoServicioElectricoTestDataBuilders==null){
+        if(comandoServicioElectricoTestDataBuilders!=null){
             for (ComandoServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder:comandoServicioElectricoTestDataBuilders
             ) {
                 servicioElectricos.add(servicioElectricoTestDataBuilder.build());

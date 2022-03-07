@@ -1,6 +1,7 @@
 package com.ceiba.adnpagos.modelo.dto;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
@@ -31,6 +32,7 @@ public class DtoPago {
     }
 
     public List<DtoServicioElectrico> convertirServicioElectricoADtoservicioElectrico(List<ServicioElectrico> servicioElectricos) {
+        this.dtoServiciosPago =new ArrayList<>();
         for (ServicioElectrico servicioElectrico : servicioElectricos
         ) {
             this.dtoServiciosPago.add(new DtoServicioElectrico(servicioElectrico.getId(), servicioElectrico.getNumeroServicio(),servicioElectrico.getIdentificacionCliente(), servicioElectrico.getNombreCliente(), servicioElectrico.getMes(), servicioElectrico.getFechaMaximaPago(), servicioElectrico.getValor(), servicioElectrico.isEstado(),servicioElectrico.getFechaCreacion()));

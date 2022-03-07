@@ -23,6 +23,11 @@ public class ManejadorCrearPago implements ManejadorComandoRespuesta<ComandoPago
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoPago comandoPago) {
         Pago pago = this.fabricaPago.crear(comandoPago);
+        //reglas al crear
+        pago.setReglapFechaPagoLaboral();
+        pago.setAplicarReglaPorcentajeDescuentoRecargo();
+        pago.setPagoDetalles();
+        pago.setEstadoServicio();
         return new ComandoRespuesta<>(this.servicioCrearPago.ejecutar(pago));
     }
 

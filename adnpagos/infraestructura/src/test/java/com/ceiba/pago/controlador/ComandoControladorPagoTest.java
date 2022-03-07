@@ -31,7 +31,7 @@ import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ComandoControladorUsuario.class)
-@ContextConfiguration(classes= ApplicationMock.class)
+@ContextConfiguration(classes = ApplicationMock.class)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 
 public class ComandoControladorPagoTest {
@@ -44,18 +44,40 @@ public class ComandoControladorPagoTest {
 
     @Test
     @DisplayName("Deberia crear un pago")
-    void deberiaCrearUnPago() throws Exception{
+    void deberiaCrearUnPago() throws Exception {
         // arrange
-     /*List<ServicioElectrico> pagoServicios = new ArrayList<>();
-        ComandoServicioElectrico comandoServicioElectrico = new ServicioEle.conId(1L).build();
-        pagoServicios.add(comandoServicioElectrico);
-        ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conPagoServicios(pagoServicios).build();
-        ComandoPago cp= new ComandoPago();
+        List<ComandoServicioElectricoTestDataBuilder> comandoServicioElectricoTestDataBuilders = new ArrayList<>();
+        ComandoServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ComandoServicioElectricoTestDataBuilder();
+        comandoServicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
+
+        ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conComandoServicioElectricoTestDataBuilders(comandoServicioElectricoTestDataBuilders).build();
+        ComandoPago cp = new ComandoPago();
+
         // act - assert
         mocMvc.perform(post("/pagos")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(comandoPago)))
                 .andExpect(status().isOk())
-                .andExpect(content().json("{'valor': 4}"));*/
+                .andExpect(content().json("{'valor': 1}"));
+    }
+
+
+    @Test
+    @DisplayName("Deberia crear un pago")
+    void deberiaAplicarlasReglasAUnPago() throws Exception {
+        // arrange
+        List<ComandoServicioElectricoTestDataBuilder> comandoServicioElectricoTestDataBuilders = new ArrayList<>();
+        ComandoServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ComandoServicioElectricoTestDataBuilder();
+        comandoServicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
+
+        ComandoPago comandoPago = new ComandoPagoTestDataBuilder().conFechaPago(LocalDateTime.now()).conIdentificacionCliente("1234").conComandoServicioElectricoTestDataBuilders(comandoServicioElectricoTestDataBuilders).build();
+        ComandoPago cp = new ComandoPago();
+
+        // act - assert
+        mocMvc.perform(post("/pagos/detalle")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(comandoPago)))
+                .andExpect(status().isOk())
+                .andExpect(content().json("{'identificacionCliente': '1234'}"));
     }
 }

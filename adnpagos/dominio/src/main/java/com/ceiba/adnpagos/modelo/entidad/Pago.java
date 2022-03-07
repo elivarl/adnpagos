@@ -149,6 +149,7 @@ public class Pago {
     public void setEstadoServicio(){
         for (ServicioElectrico servicioElectrico : this.getPagoServicios()
         ) {
+            this.pagoServicios.remove(servicioElectrico);
             servicioElectrico.setEstado(true);
             this.pagoServicios.add(servicioElectrico);
         }
