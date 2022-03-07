@@ -7,6 +7,8 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.ceiba.adnpagos.comando.manejador.ManejadorAplicarReglasPago;
+import com.ceiba.adnpagos.modelo.dto.DtoPago;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,34 +32,23 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "Controlador comando pagos")
 public class ComandoControladorPago {
 	
-	private List<ComandoPagoDetalle>  pagosDetalle;	
-	
 	private final ManejadorCrearPago crearPago;
+	private final ManejadorAplicarReglasPago aplicarReglasPago;
 	@Autowired
-	public ComandoControladorPago(ManejadorCrearPago crearPago) {
+	public ComandoControladorPago(ManejadorCrearPago crearPago, ManejadorAplicarReglasPago aplicarReglasPago) {
 		this.crearPago=crearPago;
-		this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
+		this.aplicarReglasPago=aplicarReglasPago;
 	}
 	
 	@PostMapping("/{id}/detalle")
 	@ApiOperation("Añadir un servicio a un pago")
-	public void addPagoDetalle(@PathVariable Long id) {
-		pagosDetalle.add(new ComandoPagoDetalle(id));		
+	public DtoPago aplicarReglas(@RequestBody ComandoPago comandoPago) {
+		return aplicarReglasPago.aplicarReglasPago(comandoPago);
 	}
-	
-	@DeleteMapping("/{id}/detalle")
-	@ApiOperation("Eliminar un servicio de un pago")
-	public void deletePagoDetalle(@PathVariable Long id) {
-		pagosDetalle.remove(new ComandoPagoDetalle(id));		
-	}
-	
-	
-			
+
 	@PostMapping
 	@ApiOperation("Crear pago")
 	public ComandoRespuesta<Long> crear (@RequestBody ComandoPago comandoPago){
-		//comandoPago.setPagosDetalle(this.pagosDetalle);
-		//this.pagosDetalle= new ArrayList<ComandoPagoDetalle>();
 		return crearPago.ejecutar(comandoPago);
 	}
 

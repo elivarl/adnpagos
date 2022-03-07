@@ -3,6 +3,7 @@ package com.ceiba.usuario.servicio;
 import java.util.List;
 import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioServicioElectrico;
@@ -11,23 +12,15 @@ public class ServicioCrearPago {
 
 	private final RepositorioPago repositorioPago;
 
-	private final DaoServicioElectrico daoServicio;
-
-	private final RepositorioServicioElectrico repositorioServicioElectrico;
-
-	public ServicioCrearPago(RepositorioPago repositorioPago, DaoServicioElectrico daoServicio,
-			RepositorioServicioElectrico repositorioServicioElectrico) {
+	public ServicioCrearPago(RepositorioPago repositorioPago) {
 		this.repositorioPago = repositorioPago;
-		this.daoServicio = daoServicio;
-		this.repositorioServicioElectrico = repositorioServicioElectrico;
 	}
 
 	public Long ejecutar(Pago pago) {
 		Long idPago = this.repositorioPago.crear(pago);
 		// guarda lista detalles
-		//crearDetalles(pago.getPagosDetalle(), idPago);
-		// actualiza estado pago
-		//actualizarEstadoServicio(pago.getPagosDetalle());
+		crearDetalles(pago.getPagoDetalles(), idPago);
+		crearServicioElectrico(pago.getPagoServicios());
 		return idPago;
 	}
 
@@ -38,8 +31,18 @@ public class ServicioCrearPago {
 		}
 	}
 
-	private void crearPagoDetalle(PagoDetalle pagoDetalle) {
-		repositorioPago.crearPagoDetalle(pagoDetalle);
+	public Long crearPagoDetalle(PagoDetalle pagoDetalle) {
+		return repositorioPago.crearPagoDetalle(pagoDetalle);
+	}
+
+	public void actualizarServicioElectrico(ServicioElectrico servicioElectrico){
+		repositorioPago.actualizarServivioElectrico(servicioElectrico);
+	}
+
+	private void crearServicioElectrico(List<ServicioElectrico> servicioElectricos) {
+		for (ServicioElectrico servicioElectrico : servicioElectricos) {
+			actualizarServicioElectrico(servicioElectrico);
+		}
 	}
 
 }

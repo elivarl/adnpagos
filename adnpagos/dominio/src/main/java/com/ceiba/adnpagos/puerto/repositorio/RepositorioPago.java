@@ -2,6 +2,7 @@ package com.ceiba.adnpagos.puerto.repositorio;
 
 import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
+import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 
 public interface RepositorioPago {
 	Long crear (Pago pago);
@@ -10,6 +11,9 @@ public interface RepositorioPago {
 	public boolean existePorId(Long id);
 	
 	//métodos detalle
-	public void crearPagoDetalle(PagoDetalle pagoDetalle);
+	public Long crearPagoDetalle(PagoDetalle pagoDetalle);
+
+	//metodo actualizar servicio
+	void actualizarServivioElectrico(ServicioElectrico servicio);
 
 }
