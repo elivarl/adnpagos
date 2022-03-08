@@ -1,6 +1,7 @@
 package com.ceiba.adnpagos.adaptador.repositorio;
 
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Component;
 
 import com.ceiba.adnpagos.modelo.entidad.Pago;
@@ -25,6 +26,9 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 
 	@SqlStatement(namespace="electrico", value="actualizar")
 	private static String sqlActualizarServicioElectrico;
+
+	@SqlStatement(namespace = "pago",value = "existePorId")
+	private static String sqlExistePorId;
 	
 	
 	public RepositorioServicioPagoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
@@ -35,19 +39,14 @@ public class RepositorioServicioPagoMySQL  implements RepositorioPago{
 		return this.customNamedParameterJdbcTemplate.crear(pago, sqlCrear);
 	}
 
-	@Override
-	public void actualizar(Pago pago) {
-		this.customNamedParameterJdbcTemplate.actualizar(pago, sqlActualizar);
-	}
-
-	@Override
-	public void eliminar(Long id) {
-		
-	}
 
 	@Override
 	public boolean existePorId(Long id) {
-		return false;
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+		mapSqlParameterSource.addValue("id",id);
+
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExistePorId,mapSqlParameterSource, Boolean.class);
+
 	}
 	@Override
 	public Long crearPagoDetalle(PagoDetalle pagoDetalle) {

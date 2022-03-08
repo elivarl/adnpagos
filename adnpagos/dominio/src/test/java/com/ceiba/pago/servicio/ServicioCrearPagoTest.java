@@ -12,6 +12,7 @@ import com.ceiba.pago.testdatabuilder.ServicioElectricoTestDataBuilder;
 import com.ceiba.pagodetalle.testdatabuilder.PagoDetalleTestDataBuilder;
 import com.ceiba.usuario.servicio.ServicioActualizarServicioElectrico;
 import com.ceiba.usuario.servicio.ServicioCrearPago;
+import com.ceiba.usuario.servicio.ServicioCrearServicioElectrico;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -41,14 +42,14 @@ public class ServicioCrearPagoTest {
         pago.setPagoDetalles();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        //Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
-        Mockito.when(repositorioPago.crear(pago)).thenReturn(2L);
+        Mockito.when(repositorioPago.existePorId(Mockito.anyLong())).thenReturn(false);
+        Mockito.when(repositorioPago.crear(pago)).thenReturn(ID);
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
         // act
         Long idPago = servicioCrearPago.ejecutar(pago);
         //- assert
-        assertEquals(2L, idPago);
+        assertEquals(ID, idPago);
         Mockito.verify(repositorioPago, Mockito.times(1)).crear(pago);
 
     }
@@ -62,7 +63,7 @@ public class ServicioCrearPagoTest {
         PagoDetalle pagoDetalle = new PagoDetalleTestDataBuilder().build();
 
         RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
-        //Mockito.when(repositorioUsuario.existe(Mockito.anyString())).thenReturn(false);
+        Mockito.when(repositorioPago.existePorId(Mockito.anyLong())).thenReturn(false);
         Mockito.when(repositorioPago.crearPagoDetalle(pagoDetalle)).thenReturn(2L);
         ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
 
@@ -96,5 +97,31 @@ public class ServicioCrearPagoTest {
         servicioCrearPago.actualizarServicioElectrico(pago.getPagoServicios().get(0));
         //assert
         Mockito.verify(repositorioPago, Mockito.times(1)).actualizarServivioElectrico (pago.getPagoServicios().get(0));
+    }
+
+    @Test
+    @DisplayName("Deberia lanzar una exepcion cuando se valide la existencia por id del pago")
+    void deberiaLanzarUnaExcepcionCuandoSeValidaLaExistenciaPorIdCrearPago() {
+        // arrange
+        final long ID = 1L;
+        //objetos test data builder
+        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
+        List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders = new ArrayList<>();
+        servicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
+
+        Pago pago = new PagoTestDataBuilder().conServicioElectricoTestDataBuilders(servicioElectricoTestDataBuilders).build();
+        pago.setReglapFechaPagoLaboral();
+        pago.setAplicarReglaPorcentajeDescuentoRecargo();
+        pago.setPagoDetalles();
+
+        RepositorioPago repositorioPago = Mockito.mock(RepositorioPago.class);
+        Mockito.when(repositorioPago.existePorId(ID)).thenReturn(true);
+
+        ServicioCrearPago servicioCrearPago = new ServicioCrearPago(repositorioPago);
+
+
+        // act - assert
+        BasePrueba.assertThrows(() -> servicioCrearPago.ejecutar(pago), ExcepcionDuplicidad.class,"El id del  del pago ya existe");
+
     }
 }

@@ -11,10 +11,5 @@ public interface DaoServicioElectrico {
 	 * @return los usuarios
 	 */
 	public List<DtoServicioElectrico> listar();
-	/**
-	 * Permite buscar un servicio electrico
-	 * @return un Servicio Electrico
-	 */
-	public DtoServicioElectrico obtenerPorId(Long id);
 
 }

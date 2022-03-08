@@ -30,7 +30,6 @@ public class Pago {
     private static final long MAYOR_A_3_DIAS = 3;
     private static final long PORCENTAJE_DESCUENTO_MAYOR_A_3_DIAS = 8;
     private static final long MAYOR_A_1_DIA = 1;
-    private static final long MENOR_A_3_DIA = 3;
     private static final long PORCENTAJE_DESCUENTO_1_A_3_DIAS = 0;
     private static final long PORCENTAJE_RECARGO_PAGO_MAYOR_FECHA_PAGO = 10;
     private static final long DIAS_ENTRE_FECHAS = 0;
@@ -91,21 +90,18 @@ public class Pago {
     private void realizarReglasPago() {
         if (this.getPagoServicios().size() == NUMERO_MAXIMO_DETALLES_APLICA_DESCUENTO_RECARGO) {
             long dias = calcularDias(this.fechaPago, getPagoServicios().get(INDICE_SERVICIO).getFechaMaximaPago());
-            //long porcentajeDescuentoRecargo = obtenerPorcentajeDescuentoRecargo(dias);
             this.porcentajeDescuentoRecargo=String.valueOf(obtenerPorcentajeDescuentoRecargo(dias));
             this.valorDescuentoRecargo   = calcularValorDescuentoRecargo(this.getSubTotal(), Long.parseLong(this.porcentajeDescuentoRecargo));
 
-            //this.porcentajeDescuentoRecargo = String.valueOf(porcentajeDescuentoRecargo);
-            this.total = calcularTotalPago(this.getSubTotal(), this.valorDescuentoRecargo , dias);;
+            this.total = calcularTotalPago(this.getSubTotal(), this.valorDescuentoRecargo , dias);
         }
     }
 
     private long calcularDias(LocalDateTime fechaPago, LocalDateTime fechaMaximaPago) {
         Duration totalDias = Duration.between(fechaPago, fechaMaximaPago);
-        LocalDateTime fechaInicial = fechaPago;
         long diasLaborales = DIAS_LABORASLES_INICIALIZACION;
         for (int i = 1; i <= totalDias.toDays(); i++) {
-            String dia = fechaInicial.plusDays(i).getDayOfWeek().name();
+            String dia = fechaPago.plusDays(i).getDayOfWeek().name();
             if (!dia.equals(DIA_NO_LABORAL_SABADO)) {
                 if (!dia.equals(DIA_NO_LABORAL_DOMINGO)) {
                     diasLaborales++;
@@ -123,7 +119,7 @@ public class Pago {
     private long obtenerPorcentajeDescuentoRecargo(long dias) {
         if (dias > MAYOR_A_3_DIAS) {
             return PORCENTAJE_DESCUENTO_MAYOR_A_3_DIAS;
-        } else if (dias <= MENOR_A_3_DIA && dias >= MAYOR_A_1_DIA) {
+        } else if (dias >= MAYOR_A_1_DIA) {
             return PORCENTAJE_DESCUENTO_1_A_3_DIAS;
         }
         return PORCENTAJE_RECARGO_PAGO_MAYOR_FECHA_PAGO;

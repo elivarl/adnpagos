@@ -211,5 +211,32 @@ public class ValidarReglasPagoTest {
         assertEquals(TOTAL, pago.getTotal());
     }
 
+    @Test
+    void crearPagoDiaNormalConActualizarServicio() {
+
+        // arrange
+        LocalDateTime FECHA_PAGO_DIA_NORMAL= LocalDateTime.parse("2022-03-02T15:00:00.104");
+        LocalDateTime diaPagoLunesDeberiaCrear = LocalDateTime.parse("2022-03-02T15:00:00.104");
+
+        //objetos test data builder
+        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
+        List<ServicioElectricoTestDataBuilder> servicioElectricoTestDataBuilders= new ArrayList<>();
+        servicioElectricoTestDataBuilders.add(servicioElectricoTestDataBuilder);
+
+
+        Pago pago = new PagoTestDataBuilder().conFechaPago(FECHA_PAGO_DIA_NORMAL).conServicioElectricoTestDataBuilders(servicioElectricoTestDataBuilders).build();
+
+        //act
+        pago.setEstadoServicio();
+
+        //assert
+        assertEquals(diaPagoLunesDeberiaCrear, pago.getFechaPago());
+        assertEquals(true,pago.getPagoServicios().get(0).isEstado());
+
+    }
+
+
+
+
 
 }

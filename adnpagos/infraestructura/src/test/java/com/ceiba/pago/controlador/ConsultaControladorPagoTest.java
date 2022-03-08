@@ -42,4 +42,16 @@ public class ConsultaControladorPagoTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
 
     }
+    @Test
+    @DisplayName("Deberia listar el detalle de los pagos por id pago")
+    void deberiaListarPagoDetallePorIdPago() throws Exception {
+        // arrange
+        // act - assert
+        mocMvc.perform(get("/pagos/pagodetalles/{idpago}",1L)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].descripcion", is("Febrero")));
+
+    }
 }

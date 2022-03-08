@@ -17,9 +17,6 @@ public class DaoServicioElectricoMySQL implements DaoServicioElectrico{
 	
 	@SqlStatement(namespace = "electrico", value = "listar")
 	private static String sqlListar;
-
-	@SqlStatement(namespace = "electrico", value = "obtenerPorId")
-	private static  String sqlObtenerPorId;
 	
 	public DaoServicioElectricoMySQL(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate=customNamedParameterJdbcTemplate;
@@ -28,13 +25,6 @@ public class DaoServicioElectricoMySQL implements DaoServicioElectrico{
 	@Override
 	public List<DtoServicioElectrico> listar() {
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoListarDtoServicioElectrico());
-	}
-
-	@Override
-	public DtoServicioElectrico obtenerPorId(Long id) {
-		MapSqlParameterSource paramSource= new MapSqlParameterSource();
-		paramSource.addValue("id", id);
-		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlObtenerPorId, paramSource, new MapeoDtoServicioElectrico());
 	}
 
 }

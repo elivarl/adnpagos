@@ -5,15 +5,13 @@ import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 
 public interface RepositorioPago {
-	Long crear (Pago pago);
-	public void actualizar (Pago pago);
-	public void eliminar(Long id);
+	public Long crear (Pago pago);
 	public boolean existePorId(Long id);
 	
 	//métodos detalle
 	public Long crearPagoDetalle(PagoDetalle pagoDetalle);
 
-	//metodo actualizar servicio
+	//metodo actualizar servicio cuando se hace el pago
 	void actualizarServivioElectrico(ServicioElectrico servicio);
 
 }

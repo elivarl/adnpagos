@@ -9,4 +9,7 @@ insert into servicios (numero_servicio, identificacion_cliente, nombre_cliente, 
 values(3, '1717213183', 'Elivar Largo', 'Marzo','2022-03-08 13:17:17' ,50.0, 0,now());
 
 insert into pagos (id,fecha_pago, identificacion_cliente, subtotal, porcentaje_descuento, valor_descuento, total )
-values (1,now(),'1717213183',10.0,0,0,10.0)
+values (1,now(),'1717213183',10.0,0,0,10.0);
+
+insert into pagos_detalle (id,descripcion, valor,id_servicio, id_pago)
+values (5,'Febrero' ,10.00 ,1, 1);

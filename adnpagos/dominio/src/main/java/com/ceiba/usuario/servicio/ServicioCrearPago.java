@@ -5,8 +5,11 @@ import com.ceiba.adnpagos.modelo.entidad.Pago;
 import com.ceiba.adnpagos.modelo.entidad.PagoDetalle;
 import com.ceiba.adnpagos.modelo.entidad.ServicioElectrico;
 import com.ceiba.adnpagos.puerto.repositorio.RepositorioPago;
+import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 
 public class ServicioCrearPago {
+
+	private static final String PAGO_POR_ID_YA_EXISTE = "El id del  del pago ya existe";
 
 	private final RepositorioPago repositorioPago;
 
@@ -15,10 +18,11 @@ public class ServicioCrearPago {
 	}
 
 	public Long ejecutar(Pago pago) {
+		validaExistenciaPreviaPorId(pago);
 		Long idPago = this.repositorioPago.crear(pago);
 		// guarda lista detalles
 		crearDetalles(pago.getPagoDetalles(), idPago);
-		crearServicioElectrico(pago.getPagoServicios());
+		setActualizarServicioElectrico(pago.getPagoServicios());
 		return idPago;
 	}
 
@@ -37,10 +41,17 @@ public class ServicioCrearPago {
 		repositorioPago.actualizarServivioElectrico(servicioElectrico);
 	}
 
-	private void crearServicioElectrico(List<ServicioElectrico> servicioElectricos) {
+	private void setActualizarServicioElectrico(List<ServicioElectrico> servicioElectricos) {
 		for (ServicioElectrico servicioElectrico : servicioElectricos) {
 			actualizarServicioElectrico(servicioElectrico);
 		}
+	}
+
+	private void validaExistenciaPreviaPorId(Pago pago){
+		if(repositorioPago.existePorId(pago.getId())){
+			throw new ExcepcionDuplicidad(PAGO_POR_ID_YA_EXISTE);
+		}
+
 	}
 
 }

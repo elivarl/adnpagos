@@ -2,9 +2,9 @@ package com.ceiba.adnpagos.controlador;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ceiba.adnpagos.modelo.dto.DtoPagoDetalle;
+import com.ceiba.usuario.consulta.ManejadorListarPagoDetalle;
+import org.springframework.web.bind.annotation.*;
 
 import com.ceiba.adnpagos.modelo.dto.DtoPago;
 import com.ceiba.usuario.consulta.ManejadorListarPagos;
@@ -18,8 +18,10 @@ import io.swagger.annotations.ApiOperation;
 public class ConsultaControladorPago {
 	
 	private final ManejadorListarPagos listarPagos;
-	public ConsultaControladorPago(ManejadorListarPagos listarPagos) {
+	private final ManejadorListarPagoDetalle manejadorListarPagoDetalle;
+	public ConsultaControladorPago(ManejadorListarPagos listarPagos, ManejadorListarPagoDetalle manejadorListarPagoDetalle) {
 		this.listarPagos=listarPagos;
+		this.manejadorListarPagoDetalle = manejadorListarPagoDetalle;
 	}
 	
 	
@@ -28,5 +30,12 @@ public class ConsultaControladorPago {
 	public List<DtoPago> listar(){
 		return this.listarPagos.ejecutar();
 	}
+
+	@GetMapping("/pagodetalles/{idpago}")
+	@ApiOperation("Obtener los detalles de un pago")
+	public List<DtoPagoDetalle> listarPorIdPago(@PathVariable Long idpago) {
+		return manejadorListarPagoDetalle.ejecutar(idpago);
+	}
+
 
 }
