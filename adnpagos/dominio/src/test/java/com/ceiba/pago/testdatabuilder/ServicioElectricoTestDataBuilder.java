@@ -12,7 +12,6 @@ public class ServicioElectricoTestDataBuilder {
     private String mes;
     private LocalDateTime fechaMaximaPago;
     private Double valor;
-    private LocalDateTime fechaCreacion;
 
     public ServicioElectricoTestDataBuilder(){
         id=1L;
@@ -22,7 +21,6 @@ public class ServicioElectricoTestDataBuilder {
         mes="Enero";
         fechaMaximaPago= LocalDateTime.parse("2022-03-28T15:00:00.104");
         valor=10.0;
-        fechaCreacion=LocalDateTime.parse("2022-03-05T15:00:00.104");
     }
 
     public ServicioElectricoTestDataBuilder conNumeroServicio(String  numeroServicio){
@@ -54,18 +52,13 @@ public class ServicioElectricoTestDataBuilder {
         return this;
     }
 
-    public ServicioElectricoTestDataBuilder conFechaCreacion(LocalDateTime fechaCreacion){
-        this.fechaCreacion=fechaCreacion;
-        return this;
-    }
-
     public ServicioElectricoTestDataBuilder conId(Long id){
         this.id=id;
         return this;
     }
 
     public ServicioElectrico build(){
-        return new ServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mes, fechaMaximaPago, valor,fechaCreacion);
+        return new ServicioElectrico(id,numeroServicio, identificacionCliente, nombreCliente, mes, fechaMaximaPago, valor);
     }
 
 }

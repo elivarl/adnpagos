@@ -135,7 +135,7 @@ public class Pago {
     public void setPagoDetalles() {
         for (ServicioElectrico servicioElectrico : this.getPagoServicios()
         ) {
-            this.pagoDetalles.add(new PagoDetalle(null, "Pago del servicio del mes de : " + servicioElectrico.getMes(), servicioElectrico.getValor(), servicioElectrico.getId(), this.id));
+            this.pagoDetalles.add(new PagoDetalle(null, "Pago del servicio del mes de : " + servicioElectrico.getMes(), servicioElectrico.getValor(), servicioElectrico.getId()));
         }
     }
 

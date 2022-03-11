@@ -1,13 +1,7 @@
 package com.ceiba.adnpagos.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.ceiba.ComandoRespuesta;
 import com.ceiba.adnpagos.comando.ComandoServicioElectrico;
@@ -21,6 +15,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/servicios")
 @Api(tags = {"Controlador comando servicio eléctrico"})
+@CrossOrigin(origins = "http://localhost:4200")
 public class ComandoControladorServicioElectrico {
 	
 	
@@ -40,7 +35,7 @@ public class ComandoControladorServicioElectrico {
 	public ComandoRespuesta<Long> crear(@RequestBody ComandoServicioElectrico comandoServicioElectrico){
 		return manejadorCrearServicioElectrico.ejecutar(comandoServicioElectrico);
 	}
-	
+
 	@PutMapping("/{id}")
 	@ApiOperation("Actualizar un servicio eléctrico")
 	public void actualizar (@RequestBody ComandoServicioElectrico comandoServicioElectrico, @PathVariable Long id) {

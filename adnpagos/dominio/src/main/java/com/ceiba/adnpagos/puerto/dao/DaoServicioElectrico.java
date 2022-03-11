@@ -12,4 +12,6 @@ public interface DaoServicioElectrico {
 	 */
 	public List<DtoServicioElectrico> listar();
 
+	public DtoServicioElectrico obtenerServicioElectricoPorId(Long id);
+
 }

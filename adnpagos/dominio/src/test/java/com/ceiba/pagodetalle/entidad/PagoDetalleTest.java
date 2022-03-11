@@ -32,7 +32,7 @@ public class PagoDetalleTest {
         assertEquals(DESCRIPCION, pagoDetalle.getDescripcion());
         assertEquals(VALOR, pagoDetalle.getValor());
         assertEquals(ID_SERVICIO, pagoDetalle.getIdServicio());
-        assertEquals(ID_PAGO, pagoDetalle.getIdPago());
+
     }
 
     @Test

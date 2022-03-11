@@ -41,6 +41,6 @@ public class PagoDetalleTestDataBuilder {
     }
 
     public PagoDetalle build(){
-        return new PagoDetalle(id, descripcion, valor, idServicio, idPago);
+        return new PagoDetalle(id, descripcion, valor, idServicio);
     }
 }

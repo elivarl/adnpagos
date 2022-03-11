@@ -8,10 +8,10 @@ import com.ceiba.adnpagos.puerto.dao.DaoServicioElectrico;
 import com.ceiba.adnpagos.modelo.dto.*;
 
 @Component
-public class ManejadorListarServicioElectrico {
+public class ManejadorListarServiciosElectricos {
 	private final DaoServicioElectrico daoServicioElectrico;
 	
-	public ManejadorListarServicioElectrico(DaoServicioElectrico daoServicioElectrico) {
+	public ManejadorListarServiciosElectricos(DaoServicioElectrico daoServicioElectrico) {
 		this.daoServicioElectrico=daoServicioElectrico;	
 	}
 	

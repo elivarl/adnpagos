@@ -17,17 +17,16 @@ public class PagoDetalle {
 	private Long idServicio;
 	private Long idPago;
 
-	public PagoDetalle(Long id, String descripcion, Double valor, Long idServicio, Long idPago) {
+	public PagoDetalle(Long id, String descripcion, Double valor, Long idServicio) {
 		validarObligatorio(descripcion, OBLIGATORIO_DESCRIPCION);
 		validarObligatorio(valor, OBLIGATORIO_VALOR);
 		validarObligatorio(idServicio, OBLIGATORIO_ID_SERVICIO);
-		validarObligatorio(idPago, OBLIGATORIO_ID_PAGO);
+		//validarObligatorio(idPago, OBLIGATORIO_ID_PAGO);
 
 		this.id = id;
 		this.descripcion = descripcion;
 		this.valor = valor;
 		this.idServicio = idServicio;
-		this.idPago = idPago;
 	}
 
 	public void setIdPago(Long idPago) {

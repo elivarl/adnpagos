@@ -16,10 +16,11 @@ public class ServicioCrearPago {
 	public ServicioCrearPago(RepositorioPago repositorioPago) {
 		this.repositorioPago = repositorioPago;
 	}
-
+	
 	public Long ejecutar(Pago pago) {
 		validaExistenciaPreviaPorId(pago);
 		Long idPago = this.repositorioPago.crear(pago);
+		pago.setPagoDetalles();
 		// guarda lista detalles
 		crearDetalles(pago.getPagoDetalles(), idPago);
 		setActualizarServicioElectrico(pago.getPagoServicios());

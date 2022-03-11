@@ -23,7 +23,7 @@ public class FabricaPago {
 		ArrayList<ServicioElectrico> servicioElectricos= new ArrayList<>();
 		
 		for (ComandoServicioElectrico comandoServicioElectrico : comandoServicioElectricos) {
-			servicioElectricos.add(new ServicioElectrico(comandoServicioElectrico.getId(), comandoServicioElectrico.getNumeroServicio(), comandoServicioElectrico.getIdentificacionCliente(), comandoServicioElectrico.getNombreCliente(), comandoServicioElectrico.getMes(), comandoServicioElectrico.getFechaMaximaPago(), comandoServicioElectrico.getValor(), comandoServicioElectrico.getFechaCreacion()));
+			servicioElectricos.add(new ServicioElectrico(comandoServicioElectrico.getId(), comandoServicioElectrico.getNumeroServicio(), comandoServicioElectrico.getIdentificacionCliente(), comandoServicioElectrico.getNombreCliente(), comandoServicioElectrico.getMes(), comandoServicioElectrico.getFechaMaximaPago(), comandoServicioElectrico.getValor()));
 		}
 		return servicioElectricos;
 	}

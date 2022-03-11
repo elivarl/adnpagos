@@ -112,7 +112,7 @@ public class ServicioElectricoTest {
     @DisplayName("Deberia fallar al crear un servicio electrico sin fecha de creacion")
     void deberiaFallarSinFechaCreacion() {
         //Arrange
-        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder().conFechaCreacion(null);
+        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
         //act-assert
         BasePrueba.assertThrows(() -> {
                     servicioElectricoTestDataBuilder.build();

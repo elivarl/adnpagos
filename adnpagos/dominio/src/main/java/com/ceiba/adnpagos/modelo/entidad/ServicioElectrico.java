@@ -14,7 +14,6 @@ public class ServicioElectrico {
 	private static final String OBLIGATORIO_MES="Se debe ingresar el mes correspondiente al servicio";
 	private static final String OBLIGATORIO_FECHA_MAXIMO_PAGO="Se debe ingresar la fecha máxima de pago";
 	private static final String OBLIGATORIO_VALOR="Se debe ingresar el valor del servicio";
-	private static final String OBLIGATORIO_FECHA_CREACION="Se debe ingresar la fecha de creación";
 
 
 	private Long id;
@@ -27,16 +26,13 @@ public class ServicioElectrico {
 	private boolean estado;
 	private LocalDateTime fechaCreacion;
 
-	public ServicioElectrico(Long id, String numeroServicio, String identificacionCliente, String nombreCliente, String mes, LocalDateTime fechaMaximaPago, Double valor, LocalDateTime fechaCreacion) {
-
+	public ServicioElectrico(Long id, String numeroServicio, String identificacionCliente, String nombreCliente, String mes, LocalDateTime fechaMaximaPago, Double valor) {
 		validarObligatorio(numeroServicio,OBLIGATORIO_NUMERO_SERVICIO);
 		validarObligatorio(identificacionCliente, OBLIGATORIO_IDENTIFICACION_CLIENTE);
 		validarObligatorio(nombreCliente, OBLIGATORIO_NOMBRE_CLIENTE);
 		validarObligatorio(mes, OBLIGATORIO_MES);
 		validarObligatorio(fechaMaximaPago, OBLIGATORIO_FECHA_MAXIMO_PAGO);
 		validarObligatorio(valor, OBLIGATORIO_VALOR);
-		validarObligatorio(fechaCreacion, OBLIGATORIO_FECHA_CREACION);
-
 
 		this.id = id;
 		this.numeroServicio = numeroServicio;
@@ -46,7 +42,7 @@ public class ServicioElectrico {
 		this.fechaMaximaPago = fechaMaximaPago;
 		this.valor = valor;
 		this.estado = false;
-		this.fechaCreacion = fechaCreacion;
+		this.fechaCreacion = LocalDateTime.now();
 	}
 
 	public void setEstado(boolean estado) {
