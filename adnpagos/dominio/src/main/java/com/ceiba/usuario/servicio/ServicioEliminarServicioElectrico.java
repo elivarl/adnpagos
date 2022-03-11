@@ -16,7 +16,7 @@ public class ServicioEliminarServicioElectrico {
 
 	
 	public void ejecutar (Long id) {
-		//validarExistenciaPreviaPorId(id);
+		validarExistenciaPreviaPorId(id);
 		this.repositorioServicioElectrico.eliminar(id);
 	}
 

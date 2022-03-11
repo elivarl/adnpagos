@@ -16,7 +16,7 @@ public class ServicioCrearServicioElectrico {
 
 	public Long ejecutar(ServicioElectrico servicioElectrico) {
 		validarExistenciaPreviaPorId(servicioElectrico);
-		//validarExistenciaPreviaPorNumeroServicio(servicioElectrico);
+		validarExistenciaPreviaPorNumeroServicio(servicioElectrico);
 		return this.repositorioServicioElectrico.crear(servicioElectrico);
 	}
 	

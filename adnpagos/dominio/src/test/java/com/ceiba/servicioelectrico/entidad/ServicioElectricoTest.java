@@ -23,7 +23,6 @@ public class ServicioElectricoTest {
         final String MES="Enero";
         final LocalDateTime FECHA_MAXIMO_PAGO= LocalDateTime.parse("2022-03-28T15:00:00.104");
         final Double VALOR=10.0;
-        LocalDateTime FECHA_CREACION = LocalDateTime.parse("2022-03-05T15:00:00.104");
 
         //act
         ServicioElectrico servicioElectrico = new ServicioElectricoTestDataBuilder().build();
@@ -36,7 +35,6 @@ public class ServicioElectricoTest {
         assertEquals(MES, servicioElectrico.getMes());
         assertEquals(FECHA_MAXIMO_PAGO, servicioElectrico.getFechaMaximaPago());
         assertEquals(VALOR, servicioElectrico.getValor());
-        assertEquals(FECHA_CREACION, servicioElectrico.getFechaCreacion());
     }
 
     @Test
@@ -107,16 +105,5 @@ public class ServicioElectricoTest {
                     servicioElectricoTestDataBuilder.build();
                 },
                 ExcepcionValorObligatorio.class, "Se debe ingresar el valor del servicio");
-    }
-    @Test
-    @DisplayName("Deberia fallar al crear un servicio electrico sin fecha de creacion")
-    void deberiaFallarSinFechaCreacion() {
-        //Arrange
-        ServicioElectricoTestDataBuilder servicioElectricoTestDataBuilder = new ServicioElectricoTestDataBuilder();
-        //act-assert
-        BasePrueba.assertThrows(() -> {
-                    servicioElectricoTestDataBuilder.build();
-                },
-                ExcepcionValorObligatorio.class, "Se debe ingresar la fecha de creación");
     }
 }

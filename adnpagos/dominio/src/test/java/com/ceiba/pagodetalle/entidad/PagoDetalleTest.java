@@ -57,29 +57,4 @@ public class PagoDetalleTest {
                 },
                 ExcepcionValorObligatorio.class, "Se debe ingresar el valor del pago para el mes de servicio");
     }
-
-    @Test
-    @DisplayName("Deberia fallar al crear un pago detalle sin id del servicio")
-    void deberiaFallarSinIdServicio() {
-        //Arrange
-        PagoDetalleTestDataBuilder pagoDetalleTestDataBuilder = new PagoDetalleTestDataBuilder().conIdServicio(null);
-        //act-assert
-        BasePrueba.assertThrows(() -> {
-                    pagoDetalleTestDataBuilder.build();
-                },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el ID del servicio par el detalle del pago");
-    }
-
-    @Test
-    @DisplayName("Deberia fallar al crear un pago detalle sin id del pago")
-    void deberiaFallarSinIdPago() {
-        //Arrange
-        PagoDetalleTestDataBuilder pagoDetalleTestDataBuilder = new PagoDetalleTestDataBuilder().conIdPago(null);
-        //act-assert
-        BasePrueba.assertThrows(() -> {
-                    pagoDetalleTestDataBuilder.build();
-                },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el ID del pago para el detalle");
-    }
-
 }

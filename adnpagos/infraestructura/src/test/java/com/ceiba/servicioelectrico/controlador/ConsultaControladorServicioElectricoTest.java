@@ -43,4 +43,17 @@ public class ConsultaControladorServicioElectricoTest {
                 .andExpect(jsonPath("$[0].id", is(1)));
 
     }
+
+    @Test
+    @DisplayName("Deberia listar un servicio electrico por id")
+    void deberiaListarUnServicioElectrico() throws Exception {
+        // arrange
+        // act - assert
+        mocMvc.perform(get("/servicios/{id}",1L)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("identificacionCliente", is("1717213183")))
+                .andExpect(jsonPath("id", is(1)));
+
+    }
 }
