@@ -58,11 +58,12 @@ public class Pago {
         this.id = id;
         this.fechaPago = fechaPago;
         this.identificacionCliente = identificacionCliente;
-        this.subTotal = subTotal;
+
         this.porcentajeDescuentoRecargo = POR_DEFECTO_PORCENTAJE_DESCUENTO_RECARGO;
         this.valorDescuentoRecargo = POR_DEFECTO_VALOR_DESCUENTO_RECARGO;
-        this.total = total;
         this.pagoServicios = pagoServicios;
+        this.subTotal = sumarTotal();
+        this.total = total;
         this.pagoDetalles = new ArrayList<>();
     }
 
@@ -94,6 +95,8 @@ public class Pago {
             this.valorDescuentoRecargo   = calcularValorDescuentoRecargo(this.getSubTotal(), Long.parseLong(this.porcentajeDescuentoRecargo));
 
             this.total = calcularTotalPago(this.getSubTotal(), this.valorDescuentoRecargo , dias);
+        }else{
+            this.total=sumarTotal();
         }
     }
 
@@ -147,6 +150,10 @@ public class Pago {
             servicioElectrico.setEstado(true);
             this.pagoServicios.add(servicioElectrico);
         }
+    }
+
+    private double sumarTotal(){
+        return this.pagoServicios.stream().mapToDouble(s->s.getValor()).sum();
     }
 
 }

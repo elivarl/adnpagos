@@ -13,21 +13,30 @@ public class DtoPago {
     private Long id;
     private LocalDateTime fechaPago;
     private String identificacionCliente;
-    private Double valorTotal;
+    private Double subTotal;
+    private Double total;
+    private String porcentajeDescuentoRecargo;
+    private Double valorDescuentoRecargo;
     private List<DtoServicioElectrico> dtoServiciosPago;
 
-    public DtoPago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double valorTotal) {
+    public DtoPago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double subTotal,Double total,String porcentajeDescuentoRecargo ,Double valorDescuentoRecargo) {
         this.id = id;
         this.fechaPago = fechaPago;
         this.identificacionCliente = identificacionCliente;
-        this.valorTotal = valorTotal;
+        this.subTotal=subTotal;
+        this.total = total;
+        this.porcentajeDescuentoRecargo=porcentajeDescuentoRecargo;
+        this.valorDescuentoRecargo=valorDescuentoRecargo;
     }
 
-    public DtoPago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double valorTotal, List<ServicioElectrico> servicioElectricos) {
+    public DtoPago(Long id, LocalDateTime fechaPago, String identificacionCliente, Double subTotal,Double total,String porcentajeDescuentoRecargo ,Double valorDescuentoRecargo, List<ServicioElectrico> servicioElectricos) {
         this.id = id;
         this.fechaPago = fechaPago;
         this.identificacionCliente = identificacionCliente;
-        this.valorTotal = valorTotal;
+        this.subTotal=subTotal;
+        this.total = total;
+        this.porcentajeDescuentoRecargo=porcentajeDescuentoRecargo;
+        this.valorDescuentoRecargo=valorDescuentoRecargo;
         this.dtoServiciosPago = convertirServicioElectricoADtoservicioElectrico(servicioElectricos);
     }
 

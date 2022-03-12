@@ -20,6 +20,6 @@ public class ManejadorAplicarReglasPago {
 
     public DtoPago aplicarReglasPago(ComandoPago comandoPago){
         Pago pago=servicioAplicarReglaPago.aplicarReglas(this.fabricaPago.crear(comandoPago));
-        return new DtoPago(pago.getId(), pago.getFechaPago(),pago.getIdentificacionCliente(),pago.getTotal(),pago.getPagoServicios());
+        return new DtoPago(pago.getId(), pago.getFechaPago(),pago.getIdentificacionCliente(),pago.getSubTotal(),pago.getTotal(),pago.getPorcentajeDescuentoRecargo(),pago.getValorDescuentoRecargo(),pago.getPagoServicios());
     }
 }

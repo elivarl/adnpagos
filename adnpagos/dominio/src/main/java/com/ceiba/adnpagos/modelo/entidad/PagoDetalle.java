@@ -21,7 +21,6 @@ public class PagoDetalle {
 		validarObligatorio(descripcion, OBLIGATORIO_DESCRIPCION);
 		validarObligatorio(valor, OBLIGATORIO_VALOR);
 		validarObligatorio(idServicio, OBLIGATORIO_ID_SERVICIO);
-		//validarObligatorio(idPago, OBLIGATORIO_ID_PAGO);
 
 		this.id = id;
 		this.descripcion = descripcion;

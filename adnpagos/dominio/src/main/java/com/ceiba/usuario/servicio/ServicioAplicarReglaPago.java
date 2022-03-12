@@ -9,7 +9,7 @@ public class ServicioAplicarReglaPago {
         pago.setReglapFechaPagoLaboral();
         pago.setAplicarReglaPorcentajeDescuentoRecargo();
         pago.setPagoDetalles();
-        pago.setEstadoServicio();
+        //pago.setEstadoServicio();
         return pago;
     }
 }
