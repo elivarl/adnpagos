@@ -42,7 +42,7 @@ public class PagoTest {
         final String IDENTIFICACION_CLIENTE = "1717213183";
         final String PORCENTAJE_DESCUENTO_RECARGO = "0";
         final Double VALOR_DESCUENTO_RECARGO = 0.0;
-        final Double SUBTOTAL = 0.0;
+        final Double SUBTOTAL = 10.0;
         final Double TOTAL = 0.0;
         final int TAMANIO_LISTA_SERVICIOS = 1;
 
